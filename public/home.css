@@ -1,0 +1,35 @@
+/* Section */
+section {
+  position: relative;
+  margin-left: 25%;
+  width: 50%;
+  min-width: 600px;
+  margin-bottom: 30px;
+}
+
+article {
+  margin: 10px;
+  padding: 25px;
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+article > h1 {
+  padding: 0 0 10px 0;
+}
+
+section > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+section > article > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > article > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}

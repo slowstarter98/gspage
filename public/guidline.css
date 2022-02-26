@@ -1,0 +1,91 @@
+.navicon {
+  cursor: pointer;
+  height: 60px;
+  padding: 28px 15px;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  -webkit-user-select: none;
+  -moz-user-select: none; /* Firefox all */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Likely future */
+}
+
+.navicon-bar {
+  background-color: #333;
+  display: block;
+  position: relative;
+  /* navigation icon animation */
+  transition: background-color 0.2s ease-out;
+  width: 20px;
+  height: 3px;
+}
+.navicon-bar::before,
+.navicon-bar::after {
+  background-color: #333;
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* navigation icon animation */
+  transition: all 0.2s ease-out;
+}
+.navicon-bar::before {
+  top: -7px;
+}
+.navicon-bar::after {
+  top: 7px;
+}
+
+/* toggle navigation icon */
+.nav-toggle:checked ~ .navicon > .navicon-bar {
+  background: transparent;
+}
+.nav-toggle:checked ~ .navicon > .navicon-bar::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+.nav-toggle:checked ~ .navicon > .navicon-bar::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+section {
+  margin-left: 25%;
+  width: 50%;
+}
+article {
+  margin: 10px;
+  padding: 25px;
+  background-color: white;
+}
+article > h1 {
+  padding: 0 0 10px 0;
+}
+
+table {
+  border: 3px solid lightgray;
+}
+td,
+th {
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+section > title > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > title > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+section > article > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > article > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}

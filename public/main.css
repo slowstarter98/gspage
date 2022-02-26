@@ -1,0 +1,195 @@
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #58666e;
+  background-color: #f0f3f4;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 10px 5px;
+}
+h2 {
+  margin: 12px 0 12px 25px;
+  font-size: 48px;
+  float: left;
+}
+
+/* 헤어 파트 -------------------------------------------------------- */
+
+header {
+  background-color: #fff;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+header > h2 {
+  padding: 0px 0px 0px 48px;
+}
+
+#second-floor {
+  width: 80%;
+  min-width: 600px;
+  height: 80px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#logo {
+  width: 50%;
+  float: left;
+  color: inherit;
+}
+#userPage {
+  float: right;
+  width: 300px;
+  height: 100%;
+}
+#log-in {
+  margin-right: 70px;
+  line-height: 60px;
+  float: right;
+  color: #58666e;
+}
+#my-page {
+  line-height: 60px;
+  float: left;
+  color: #58666e;
+}
+
+#first-floor {
+  clear: both;
+}
+.nav-items {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-items > li {
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.nav-items > li > a {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.nav-items > li > a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* ------------------------------------------------------------------------------- */
+
+#wrap {
+  min-width: 960px;
+  width: 100%;
+  margin-top: 120px;
+  margin-bottom: 60px;
+  /* wrap에 들어가는 component의 크기가  100vh - 252px 이하인 경우 */
+  /* 메뉴 누를때 마다 notice랑 board 페이지에서 스크롤 없는거 킹받아서 1 뺌 */
+  min-height: calc(100vh - 251px);
+  /* wrap에 들어있는 component 의 크기가 100vh-252px 이상일 경우 */
+  height: 100%;
+}
+footer {
+  position: absolute;
+  z-index: 3;
+  height: 72px;
+  width: 100%;
+  padding: 0 30px;
+  line-height: 20px;
+  color: #8a8c8f;
+  border-top: 1px solid #dee5e7;
+  background-color: #f2f2f2;
+}
+
+/* sectiontitle 기존 색 , 마우스 올렸을때 색 */
+.sectionTitle {
+  color: rgba(0, 0, 0, 0.6);
+}
+.sectionTitle:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* resuable css */
+.sidebar .text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #58666e;
+}
+.sidebar .image {
+  width: 60px;
+  display: flex;
+  align-items: center;
+}
+/* 사이드 바 파트-------------------------------- */
+
+.sidebar {
+  position: fixed;
+  top: 133px;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  padding: 10px 14px;
+  background-color: #8a8c8f;
+}
+.sidebar header {
+  position: relative;
+}
+.sidebar .image-text img {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+
+  background-color: rgba(192, 31, 31, 0.87);
+}
+
+.sidebar header .image-text {
+  display: flex;
+  align-items: center;
+  background-color: #8a8c8f;
+}
+
+header .image-text .header-text {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.header-text .name {
+  margin-top: -2px;
+}
+.sidebar header .toggle {
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%);
+  height: 25px;
+  width: 25px;
+  background-color: rgb(88, 175, 37);
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  font-size: 22px;
+}

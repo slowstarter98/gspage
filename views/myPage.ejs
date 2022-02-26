@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <title>Lab402</title>
+  </head>
+  <body>
+    <%- include('header.html') %>
+
+    <div id="body">
+      <div id="wrap">
+        <p>테스트 이메일 : <%= 사용자.email%></p>
+        <p>테스트 비밀번호 : <%= 사용자.password%></p>
+      </div>
+    </div>
+
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

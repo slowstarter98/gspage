@@ -1,0 +1,55 @@
+/* Section */
+section {
+  margin-left: 25%;
+  width: 50%;
+}
+article {
+  margin: 10px;
+  padding: 25px;
+  background-color: white;
+}
+article > h1 {
+  padding: 0 0 10px 0;
+}
+
+section > title > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > title > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+section > article > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > article > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.page_nums li {
+  list-style-type: none;
+  display: inline;
+  margin: 10px;
+  margin-top: 30px;
+}
+
+.page_nums li > a {
+  color: rgba(0, 64, 128, 0.5);
+}
+
+.page_nums li > a:hover {
+  color: rgba(0, 64, 128, 0.8);
+}
+
+section > article > h1 > a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+section > article > h1 > a:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+nav {
+  display: inline;
+}

@@ -115,7 +115,7 @@ passport.use(
       db.collection("login").findOne(
         { email: 입력이메일 },
         function (에러, 결과) {
-          console.log("여기까진 한다.");
+          console.log("여기까진 한다.", 결과);
           if (에러) return done(에러);
           if (!결과)
             return done(null, false, { message: "존재하지않는 아이디요" });

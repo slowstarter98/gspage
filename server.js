@@ -16,7 +16,7 @@ app.use(methodeOverride("_method"));
 var port = 8080;
 // 사용 DB
 var db;
-
+// db연결
 const MongoClient = require("mongodb").MongoClient;
 MongoClient.connect(
   "mongodb+srv://forrest:gump98@cluster0.fg476.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
@@ -51,8 +51,31 @@ app.get("/contact", function (요청, 응답) {
 app.get("/guidline", function (요청, 응답) {
   응답.render("guidline.ejs");
 });
+//회원가입페이지
+app.get("/signup", function (요청, 응답) {
+  응답.render("sign.ejs");
+});
 
-// 로그인 및 마이페이지
+//회원가입요청
+app.post("/signup", function (요청, 응답) {
+  //암호화
+  const createHashedPassword = (요청) => {
+    return crypto
+      .createHash("sha512")
+      .update(요청.body.password)
+      .digest("base64");
+  };
+
+  db.collection("login").insertOne(
+    { email: 요청.body.email, password: createHashedPassword(요청) },
+    function (에러, 결과) {
+      console.log("db에 전송 완료");
+      응답.redirect("/");
+    }
+  );
+});
+
+// 로그인 및 마이페이지-----------------------------------
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
@@ -63,10 +86,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+//로그인페이지
 app.get("/login", function (요청, 응답) {
   응답.render("login.ejs");
 });
 
+//로그인 요청
 app.post(
   "/login",
   passport.authenticate("local", {
@@ -74,7 +99,7 @@ app.post(
   }),
   function (요청, 응답) {
     console.log("성공");
-    응답.redirect("/home");
+    응답.redirect("/");
   }
 );
 
@@ -106,6 +131,7 @@ passport.use(
   )
 );
 
+//세션생성
 passport.serializeUser(function (user, done) {
   done(null, user.email);
 });
@@ -116,6 +142,7 @@ passport.deserializeUser(function (이메일, done) {
   });
 });
 
+//마이페이지
 app.get("/mypage", 로그인했니, function (요청, 응답) {
   console.log(요청.user);
   응답.render("myPage.ejs", { 사용자: 요청.user });

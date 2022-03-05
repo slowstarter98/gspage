@@ -9,11 +9,11 @@
     />
 
     <link rel="stylesheet" type="text/css" href="/public/main.css" />
-    <link rel="stylesheet" type="text/css" href="/public/home.css" />
     <title>Lab402</title>
   </head>
   <body>
-    <%- include('header.html') %>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
 
     <div id="body">
       <div id="wrap">

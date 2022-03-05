@@ -1,11 +1,4 @@
 /* Section */
-section {
-  position: relative;
-  margin-left: 25%;
-  width: 50%;
-  min-width: 600px;
-  margin-bottom: 30px;
-}
 
 article {
   margin: 10px;

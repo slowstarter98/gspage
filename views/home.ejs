@@ -13,8 +13,8 @@
     <title>Lab402</title>
   </head>
   <body>
-    <%- include('header.html') %>
-
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
     <div id="body">
       <div id="wrap">
         <section>

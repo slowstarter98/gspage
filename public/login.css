@@ -1,0 +1,29 @@
+section {
+  background-color: white;
+  padding: 20px;
+}
+.input-box {
+  padding-top: 10px;
+}
+.form-control {
+  width: 300px;
+  height: 30px;
+  padding: 10px;
+}
+
+.send-button {
+  position: relative;
+  top: 20px;
+  left: 500px;
+  width: 120px;
+  height: 30px;
+  background-color: rgb(35, 59, 35);
+  border-radius: 2px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(245, 239, 230);
+}
+.send-button:hover {
+  background-color: darkgreen;
+}

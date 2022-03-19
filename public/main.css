@@ -11,7 +11,6 @@ a {
   text-decoration: none;
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #58666e;
   background-color: #f0f3f4;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +25,7 @@ p {
   margin: 10px 5px;
 }
 h2 {
-  margin: 12px 0 12px 25px;
+  margin: 12px 0 12px 15px;
   font-size: 48px;
   float: left;
 }
@@ -36,36 +35,110 @@ section {
   margin-left: calc(50% - 375px);
   margin-bottom: 30px;
 }
+article {
+  margin: 10px;
+  padding: 25px;
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05), 0 2px 0 rgba(0, 0, 0, 0.05);
+}
 
 /* 헤더 파트 -------------------------------------------------------- */
 
 header {
+  position: relative;
+  z-index: 2;
   background-color: #fff;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 header > h2 {
   padding: 0px 0px 0px 48px;
 }
 
 #second-floor {
-  width: 60%;
-  min-width: 700px;
+  width: 900px;
+  margin-left: calc(50% - 450px);
   height: 80px;
-  margin-left: 20%;
-  margin-right: 20%;
-}
-/* 로그인 후 헤더파트---------------------------- */
-#username {
-  position: relative;
-  margin-top: 30px;
-  right: -20px;
 }
 
-.logout {
-  margin-top: 35px;
-  float: right;
+/* DashBoard 아래항목---------------------------- */
+.hidden-floor {
+  display: flex;
+  flex-direction: row;
   position: relative;
-  z-index: 3;
+  width: 667px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+}
+.under-DashBoard {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 108.3px;
+  top: -60px;
+  display: flex;
+  transition: all 500ms ease;
+}
+
+.under-DashBoard.active {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: 108.3px;
+  top: -2px;
+  z-index: 5;
+  display: flex;
+}
+
+.under-DashBoard > li {
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 15px;
+}
+
+.under-DashBoard.active > li {
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 15px;
+  transition: all 200ms ease;
+}
+.under-DashBoard.active > li:hover {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.under-DashBoard > li > a {
+  font-size: 17px;
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.under-DashBoard > li > a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* 로그인 후 헤더파트---------------------------- */
+#username {
+  float: right;
+  margin-right: 20px;
+}
+#userPage {
+  padding: 10px;
+  float: right;
+  height: 100px;
+  text-align: center;
+}
+.logout {
+  margin: 15px 5px;
+  float: right;
   background-color: white;
   font-size: 16px;
   font-weight: bold;
@@ -74,28 +147,19 @@ header > h2 {
 .logout:hover {
   color: rgba(0, 0, 0, 0.9);
 }
+#my-page {
+  float: right;
+  color: #58666e;
+  margin-right: 20px;
+}
 /* ----------------------------------------------- */
 #logo {
-  width: 50%;
+  width: 40%;
   float: left;
   color: inherit;
 }
-#userPage {
-  float: right;
-  width: 300px;
-  height: 100%;
-}
 #log-in {
-  margin-right: 70px;
-  line-height: 60px;
   float: right;
-  color: #58666e;
-}
-#my-page {
-  position: relative;
-  z-index: 2;
-  line-height: 62px;
-  float: left;
   color: #58666e;
 }
 

@@ -1,10 +1,5 @@
 /* Section */
 
-article {
-  margin: 10px;
-  padding: 25px;
-  background-color: white;
-}
 article > h1 {
   padding: 0 0 10px 0;
 }

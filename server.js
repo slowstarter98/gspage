@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const crypto = require("crypto");
 const app = express();
-
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -21,6 +20,7 @@ MongoClient.connect(process.env.DB_URL, (error, client) => {
   if (error) {
     return console.log(error);
   }
+  // db 이름도 자동으로 생성된다 몽고db 계정만 연결하면 다 만들어준다.
   db = client.db("gspage");
   app.listen(process.env.PORT, function () {
     console.log("listening on 8080  + MongoDB - gspage 접속완료");
@@ -34,14 +34,57 @@ const createHashedPassword = (password) => {
 
 //회원가입요청
 app.post("/signup", function (요청, 응답) {
-  db.collection("login").insertOne(
+  //inser 함수 자체가 db에 클러스터 만들어준다. 따로 몽고가서 만들 필요 ㄴㄴ
+  db.collection("login").findOne(
     {
       email: 요청.body.email,
-      password: createHashedPassword(요청.body.password),
     },
     function (에러, 결과) {
-      console.log("db에 전송 완료");
-      응답.redirect("/");
+      //db에 이메일이 없다면
+      if (결과 === null) {
+        //비밀번호 유효성 검사------------
+        var pw = 요청.body.password;
+        var num = pw.search(/[0-9]/g);
+        var eng = pw.search(/[a-z]/gi);
+        var spe = pw.search(/[`+-~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+        if (pw.length < 8 || pw.length > 20) {
+          응답.send(
+            "<script>alert('8자리 ~ 20자리 이내로 입력해주세요.');location.href='/signup';</script>"
+          );
+          return false;
+        } else if (pw.search(/\s/) != -1) {
+          응답.send(
+            "<script>alert('비밀번호는 공백 없이 입력해주세요.');location.href='/signup';</script>"
+          );
+          return false;
+        } else if (num < 0 || eng < 0 || spe < 0) {
+          응답.send(
+            "<script>alert('영문,숫자, 특수문자를 혼합하여 입력해주세요.');location.href='/signup';</script>"
+          );
+          return false;
+        }
+
+        //비밀번호 유호성 검사 통과----------------
+        else {
+          db.collection("login").insertOne(
+            {
+              email: 요청.body.email,
+              password: createHashedPassword(요청.body.password),
+            },
+            function (에러, 결과) {
+              console.log("db에 전송 완료");
+              응답.redirect("/login");
+            }
+          );
+        }
+      }
+      //db에 이미 있다면
+      else {
+        응답.send(
+          "<script>alert('이미 존재하는 이메일입니다.');location.href='/signup';</script>"
+        );
+      }
     }
   );
 });
@@ -50,7 +93,7 @@ app.post("/signup", function (요청, 응답) {
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
-
+const flash = require("connect-flash");
 app.use(
   session({ secret: "비밀번호코드", resave: true, saveUninitialized: false })
 );
@@ -66,10 +109,10 @@ app.get("/login", function (요청, 응답) {
 app.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/fail",
+    failureRedirect: "/login",
   }),
   function (요청, 응답) {
-    console.log("로그인 성공");
+    console.log("로그인 성공", 요청.user);
     응답.render("home.ejs", { 사용자: 요청.user });
   }
 );
@@ -87,16 +130,22 @@ passport.use(
         { email: 입력이메일 },
         function (에러, 결과) {
           console.log("로그인 요청 보낸거 확인.", 결과);
-
+          //에러
           if (에러) return done(에러);
-
-          if (결과 == null)
-            return done(null, false, { message: "존재하지않는 아이디요" });
+          // 이메일 존재하지 않을 때
+          if (결과 == null) {
+            console.log("이메일 틀림");
+            return done(null, false, { message: "이메일을 확인해주세요" });
+          }
+          // 로긍니 성공
           else if (createHashedPassword(입력한비번) == 결과.password) {
             return done(null, 결과);
-          } else {
+          }
+
+          //비밀번호를 틀렸을 때
+          else {
             console.log("비번 틀림");
-            return done(null, false, { message: "비번틀렸어요" });
+            return done(null, false, { message: "비밀번호를 확인해주세요" });
           }
         }
       );
@@ -110,7 +159,6 @@ passport.serializeUser(function (user, done) {
 });
 
 // 이 코드 아래에 주소요청들을 써주는 이유
-
 // 이 코드가 위에 암호화한 세션을 해석해서
 // 올바른 세션쿠키가 있는 경우 요청.user에
 // 저어어어 위에서 db를 통해 찾은 정보를 넣어주기 때문에
@@ -125,7 +173,7 @@ passport.deserializeUser(function (이메일, done) {
 });
 
 //마이페이지
-app.get("/mypage", 로그인했니, function (요청, 응답) {
+app.get("/mypage", 로그인확인, function (요청, 응답) {
   console.log(요청.user);
   응답.render("myPage.ejs", { 사용자: 요청.user });
 });
@@ -140,11 +188,75 @@ app.get("/notice", function (요청, 응답) {
   console.log(요청.user);
   응답.render("notice.ejs", { 사용자: 요청.user });
 });
+
 //board화면
+app.get("/board/:id", function (요청, 응답) {
+  const { id } = 요청.params;
+  db.collection("board-count").findOne(
+    { name: "최근게시물번호" },
+    function (에러, 결과) {
+      var number = 결과.lastPost;
+      db.collection("board")
+        .find()
+        .toArray(function (err, result) {
+          console.log(result);
+          응답.render("Board.ejs", {
+            사용자: 요청.user,
+            게시물: result,
+            페이지: id - 1,
+            총게시물갯수: number - 1,
+          });
+        });
+    }
+  );
+});
+
+// board-write 페이지 get 요청
+app.get("/board-write", function (요청, 응답) {
+  응답.render("Board-write.ejs", { 사용자: 요청.user });
+});
+
+// board-write 페이지 post 요청
+app.post("/board-write", function (요청, 응답) {
+  db.collection("board-count").findOne(
+    {
+      name: "최근게시물번호",
+    },
+    function (에러, 결과) {
+      db.collection("board").insertOne(
+        {
+          _id: 결과.lastPost + 1,
+          Title: 요청.body.title,
+          Content: 요청.body.content,
+        },
+        function (에러, result) {
+          db.collection("board-count").updateOne(
+            { name: "최근게시물번호" },
+            { $inc: { lastPost: 1 } },
+            function (에러, 결과) {
+              응답.redirect("/board/1");
+            }
+          );
+        }
+      );
+    }
+  );
+});
+
+app.get("/posts/:postnumber", function (요청, 응답) {
+  var { postnumber } = 요청.params;
+  postnumber = parseInt(postnumber);
+  db.collection("board").findOne({ _id: postnumber }, function (에러, 결과) {
+    console.log(결과, postnumber);
+    응답.render("Board-post.ejs", { 사용자: 요청.user, 게시물: 결과 });
+  });
+});
+
 app.get("/board", function (요청, 응답) {
   console.log(요청.user);
-  응답.render("Board.ejs", { 사용자: 요청.user });
+  응답.render("Board.ejs", { 사용자: 요청.user, 게시물: 65 });
 });
+
 //contact화면
 app.get("/contact", function (요청, 응답) {
   console.log(요청.user);
@@ -169,10 +281,12 @@ app.get("/logout", function (요청, 응답) {
   });
 });
 
-function 로그인했니(요청, 응답, next) {
+function 로그인확인(요청, 응답, next) {
   if (요청.user) {
     next();
   } else {
-    응답.send("로그인 안하셨는디?");
+    응답.send(
+      "<script>alert('로그인을 하지 않았습니다.');location.href='/';</script>"
+    );
   }
 }

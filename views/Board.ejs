@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/public/main.css" />
     <link rel="stylesheet" type="text/css" href="/public/board.css" />
     <title>Lab402</title>
+    <script src="../public/header.js" defer></script>
   </head>
   <body>
     <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
@@ -21,37 +22,50 @@
         <section id="board-section">
           <h1>Board</h1>
           <article id="Writing">
-            <h1></h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>number</th>
+                  <th>Title</th>
+                  <th> </th>
+                </tr>
+              </thead>
+              <tbody>
+                <%if(게시물!=null){ for(var i=0 ;i < 5; i++ ){ %>
+                  <% if((총게시물갯수-i-페이지*5)>=0){ %>
+                <tr>
+                  <td><%= i+페이지*5+1 %></td>
+                  <td><a href="/posts/<%=총게시물갯수-i-페이지*5+1%>"><%= 게시물[총게시물갯수-i-페이지*5].Title %></a></td>
+                  <td></td>
+                </tr>
+                <%} } }%>
+              </tbody>
+            </table>
             <hr />
             <div id="page-div">
               <ul class="page_nums">
-                <li>
-                  <a href="#1">1</a>
-                </li>
-                <li>
-                  <a href="#2">2</a>
-                </li>
-                <li>
-                  <a href="#3">3</a>
-                </li>
-                <li>
-                  <a href="#4">4</a>
-                </li>
-                <li>
-                  <a href="#5">5</a>
-                </li>
+
+                <%if(게시물!=null){ for(var i=0 ;i < 5; i++ ){ %>
+
+                  <li>
+                    <a href="<%= i+1 %>"> <%= i+1 %> </a>
+                  </li>
+
+                  <%}  }%>
+    
               </ul>
             </div>
-            <h1></h1>
+           </br></br>
+            <span>
             부적절한 내용, 도배 등 사이트 운영 기준 위반의 경우 동의 없이 삭제될
             수 있습니다.
-            <br />
+             </span>
             <br />
           </article>
 
           <div id="lowContents">
             <h3>
-              <a class="writing" href="BoardContent.html"> 글 작성하기 </a>
+              <a class="writing" href="/board-write"> 글 작성하기 </a>
             </h3>
           </div>
         </section>

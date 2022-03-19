@@ -7,11 +7,10 @@
     <div id="userPage">
       <a href="/logout" class="logout">logout</a>
 
+      <h3 id="username">사용자 : <%=사용자.email%></h3>
       <a href="/mypage">
         <h3 id="my-page">my page</h3>
       </a>
-
-      <h3 id="username">사용자 : <%=사용자.email%></h3>
     </div>
   </div>
   <div id="first-floor">
@@ -20,12 +19,11 @@
         <li>
           <a href="/">Home</a>
         </li>
-        <li>
-          <a href="/notice">Notice</a>
+
+        <li class="DashBoard">
+          <a href="#">DashBoard</a>
         </li>
-        <li>
-          <a href="/board">Board</a>
-        </li>
+
         <li>
           <a href="/guidline">Guideline</a>
         </li>
@@ -36,3 +34,10 @@
     </nav>
   </div>
 </header>
+<div class="hidden-floor">
+  <ul class="under-DashBoard">
+    <li><a href="/notice">Notice</a></li>
+    <li><a href="#">Q&A</a></li>
+    <li><a href="/board/1">Board</a></li>
+  </ul>
+</div>

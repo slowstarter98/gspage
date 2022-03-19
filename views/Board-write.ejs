@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/boardWrite.css" />
+    <script src="../public/header.js" defer></script>
+    <script src="../public/board-write.js" defer></script>
+    <title>Lab402</title>
+  </head>
+  <body>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
+
+    <div id="body">
+      <div id="wrap">
+        <section>
+          <h1>Writing</h1>
+          <article>
+            <h4>Title</h4>
+            <form action="/board-write" method="POST">
+              <input
+                type="text"
+                class="title-input"
+                name="title"
+                placeholder="제목"
+              />
+              <h4>content</h4>
+              <textarea
+                class="content-input"
+                name="content"
+                cols="30"
+                rows="10"
+                style="width: 100%"
+                placeholder="내용"
+              ></textarea>
+              <div class="button-box">
+                <button class="submit-button" type="submit">submit</button>
+              </div>
+            </form>
+          </article>
+        </section>
+      </div>
+    </div>
+
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

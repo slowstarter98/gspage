@@ -3,11 +3,7 @@
 #board-section {
   min-width: 680px;
 }
-article {
-  margin: 10px;
-  padding: 25px;
-  background-color: white;
-}
+
 article > h1 {
   padding: 0 0 10px 0;
 }
@@ -21,6 +17,7 @@ section > article > h1 > a:hover {
 }
 
 #page-div {
+  margin-top: 10px;
   width: 610px;
   height: 50px;
   display: flex;
@@ -52,5 +49,32 @@ section > article > h1 > a:hover {
   color: rgba(0, 0, 0, 0.6);
 }
 .writing:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* table 파트 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  width: 300px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+th {
+  width: 300px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 15px;
+  padding-bottom: 20px;
+}
+td a {
+  color: rgba(0, 0, 0, 0.6);
+}
+td a:hover {
   color: rgba(0, 0, 0, 0.9);
 }

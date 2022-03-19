@@ -9,7 +9,9 @@
     />
 
     <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/login.css" />
     <title>Lab402</title>
+    <script src="../public/header.js" defer></script>
   </head>
   <body>
     <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
@@ -17,21 +19,25 @@
 
     <div id="body">
       <div id="wrap">
-        <form
-          action="/signup"
-          method="POST"
-          style="margin-left: 40px; width: 400px"
-        >
-          <div class="form-group">
-            <label for="exampleInputEmail1">이메일</label>
-            <input type="text" class="form-control" name="email" />
-          </div>
-          <div class="form-group">
-            <label>패스워드</label>
-            <input type="text" class="form-control" name="password" />
-          </div>
-          <button type="submit">Submit</button>
-        </form>
+        <h1 style="margin-left: calc(50% - 375px)">Sign-up</h1>
+        <section>
+          <form
+            action="/signup"
+            method="POST"
+            style="margin-left: 40px; width: 400px"
+          >
+            <div class="input-box">
+              <label><h4>Email</h4></label>
+              <input type="email" class="form-control" name="email" />
+            </div>
+            <div class="input-box">
+              <label><h4>Password</h4></label>
+              <input type="text" class="form-control" name="password" />
+            </div>
+            <button class="send-button" type="submit">Send</button>
+            <p><a href="/login">Go to log-in</a></p>
+          </form>
+        </section>
       </div>
     </div>
 

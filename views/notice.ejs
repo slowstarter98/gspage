@@ -12,6 +12,10 @@
     <link rel="stylesheet" type="text/css" href="/public/notice.css" />
     <title>Lab402</title>
     <script src="../public/header.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
@@ -21,36 +25,67 @@
       <div id="wrap">
         <section>
           <h1>Notice</h1>
-          <article id="first_note">
+          <%if(공지!=null){ for(var i=0 ;i < 5; i++ ){ %> <%
+          if((총공지갯수-i-페이지*5)>=0){ %>
+
+          <article>
             <h1>
-              <a href="Notice_content.html">REST API 기반 재무 데이터 제공</a>
+              <a href="/noticeposts/<%=총공지갯수-i-페이지*5+1%>"
+                ><%= 공지[총공지갯수-i-페이지*5].Title %></a
+              >
             </h1>
           </article>
 
-          <article id="second_note">
-            <h1>
-              <a href="Notice_content.html">Moggle Project</a>
-            </h1>
-          </article>
-          <nav>
-            <ul class="page_nums">
+          <%} }}%>
+
+          <nav class="page_nums">
+            <ul>
+              <% if(공지!=null){ %> <% if(페이지+1 <= 3){ %>
               <li>
-                <a href="#1">1</a>
+                <a href="#"> <i class="fa-solid fa-angle-left"></i> </a>
+              </li>
+              <% for(var i=0 ;i < 5; i++ ){ %> <% if(i==페이지){%>
+              <li>
+                <a class="nowPage" href="<%= i+1 %>"> <%= i+1 %> </a>
+              </li>
+              <%}%> <%if(i!=페이지){%>
+              <li>
+                <a href="<%= i+1 %>"> <%= i+1 %> </a>
+              </li>
+              <% }%> <% }%> <% }%> <% if(페이지+1 > 3) { %>
+              <li>
+                <a href="<%= 페이지-2 %>">
+                  <i class="fa-solid fa-angle-left"></i>
+                </a>
               </li>
               <li>
-                <a href="#2">2</a>
+                <a href="<%= 페이지-1 %>"> <%= 페이지-1 %> </a>
               </li>
               <li>
-                <a href="#3">3</a>
+                <a href="<%= 페이지 %>"> <%= 페이지 %> </a>
               </li>
               <li>
-                <a href="#4">4</a>
+                <a class="nowPage" href="<%= 페이지+1 %>"> <%= 페이지+1 %> </a>
               </li>
               <li>
-                <a href="#5">5</a>
+                <a href="<%= 페이지+2 %>"> <%= 페이지+2 %> </a>
+              </li>
+              <li>
+                <a href="<%= 페이지+3 %>"> <%= 페이지+3 %> </a>
+              </li>
+
+              <%}%> <%}%>
+
+              <li>
+                <a href="<%= 페이지+4 %>">
+                  <i class="fa-solid fa-angle-right"></i>
+                </a>
               </li>
             </ul>
           </nav>
+          <%if(마스터계정 == 1){ %>
+          <a href="/notice-write"><h3 class="noticeWrite">공지작성</h3></a>
+          <%}%>
         </section>
       </div>
     </div>

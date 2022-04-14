@@ -15,11 +15,13 @@ section > article > h1 > a {
 section > article > h1 > a:hover {
   color: rgba(0, 0, 0, 0.9);
 }
+.page_nums {
+  display: flex;
+  justify-content: center;
+}
 
 #page-div {
-  margin-top: 10px;
-  width: 610px;
-  height: 50px;
+  margin-top: 15px;
   display: flex;
   justify-content: center;
 }
@@ -56,19 +58,24 @@ section > article > h1 > a:hover {
 table {
   width: 100%;
   border-collapse: collapse;
+  text-align: center;
 }
 
 td {
-  width: 300px;
+  box-sizing: content-box;
   vertical-align: middle;
   text-align: center;
+  height: 30px;
+  width: 300px;
   padding: 15px;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
 }
 th {
-  width: 300px;
+  box-sizing: content-box;
   vertical-align: middle;
   text-align: center;
+  height: 30px;
+  width: 300px;
   padding: 15px;
   padding-bottom: 20px;
 }
@@ -77,4 +84,7 @@ td a {
 }
 td a:hover {
   color: rgba(0, 0, 0, 0.9);
+}
+.nowPage {
+  font-size: 20px;
 }

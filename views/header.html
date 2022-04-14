@@ -4,15 +4,33 @@
       <h2>Lab402</h2>
     </a>
     <div id="userPage">
-      <a href="/login">
-        <h3 id="log-in">log-in</h3>
+      <!-- 팜업창 -->
+      <i class="fa-solid fa-o obutton"></i>
+      <div class="login-box">
+        <form action="/login" method="POST">
+          <i class="fa-solid fa-x xbutton"></i>
+          <div style="clear: both"></div>
+          <div class="popup-inputbox1">
+            <h4>Email</h4>
+            <input type="email" name="email" placeholder="email@example" />
+          </div>
+          <div class="popup-inputbox2">
+            <h4>Password</h4>
+            <input type="password" name="password" placeholder="password" />
+          </div>
+          <button class="popup-button" type="submit">Send</button>
+        </form>
+      </div>
+      <!-- 팜업창 -->
+      <a href="/signup">
+        <h3 id="log-in">Sign-up</h3>
       </a>
-
       <a href="/mypage">
-        <h3 id="my-page">my page</h3>
+        <h3 id="my-page">My page</h3>
       </a>
     </div>
   </div>
+
   <div id="first-floor">
     <nav>
       <ul class="nav-items">
@@ -36,8 +54,8 @@
 </header>
 <div class="hidden-floor">
   <ul class="under-DashBoard">
-    <li><a href="/notice">Notice</a></li>
-    <li><a href="#">Q&A</a></li>
-    <li><a href="/board/1">Board</a></li>
+    <li><a class="underbtn1" href="/notice/1">Notice</a></li>
+    <li><a class="underbtn2" href="#">Q&A</a></li>
+    <li><a class="underbtn3" href="/board/1">Board</a></li>
   </ul>
 </div>

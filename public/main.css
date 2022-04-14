@@ -60,6 +60,62 @@ header > h2 {
   height: 80px;
 }
 
+/* 헤더 팝어창 파트 */
+
+.login-box {
+  position: absolute;
+  margin-top: 3px;
+  right: 10px;
+  width: 200px;
+  height: 300px;
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+.login-box.active {
+  display: none;
+}
+.obutton {
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  margin-top: 12px;
+  margin-right: 8px;
+}
+.obutton:hover {
+  cursor: pointer;
+  color: rgb(31, 64, 173);
+}
+.xbutton {
+  font-size: 15px;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.xbutton:hover {
+  cursor: pointer;
+  color: brown;
+}
+
+.popup-inputbox1 {
+  padding-bottom: 30px;
+}
+.popup-inputbox1 h4 {
+  display: inline-block;
+}
+
+.popup-inputbox2 {
+  padding-bottom: 30px;
+}
+.popup-inputbox2 h4 {
+  display: inline-block;
+}
+
+.popup-button {
+  width: 100px;
+  padding: 5px;
+}
+
 /* DashBoard 아래항목---------------------------- */
 .hidden-floor {
   display: flex;
@@ -103,17 +159,6 @@ header > h2 {
   margin-right: 5px;
   margin-left: 5px;
   padding: 15px;
-}
-
-.under-DashBoard.active > li {
-  margin-right: 5px;
-  margin-left: 5px;
-  padding: 15px;
-  transition: all 200ms ease;
-}
-.under-DashBoard.active > li:hover {
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .under-DashBoard > li > a {

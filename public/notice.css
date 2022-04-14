@@ -1,7 +1,7 @@
 /* Section */
 
 article > h1 {
-  padding: 0 0 10px 0;
+  padding: 5px;
 }
 
 section > title > h1 > a {
@@ -20,6 +20,12 @@ section > article > h1 > a:hover {
   color: rgba(0, 0, 0, 0.9);
 }
 
+.page_nums {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
 .page_nums li {
   list-style-type: none;
   display: inline;
@@ -28,7 +34,7 @@ section > article > h1 > a:hover {
 }
 
 .page_nums li > a {
-  color: rgba(0, 64, 128, 0.5);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .page_nums li > a:hover {
@@ -42,6 +48,14 @@ section > article > h1 > a {
 section > article > h1 > a:hover {
   color: rgba(0, 0, 0, 0.9);
 }
-nav {
-  display: inline;
+
+.noticeWrite {
+  margin-left: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.noticeWrite :hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+.nowPage {
+  font-size: 20px;
 }

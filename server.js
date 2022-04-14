@@ -94,6 +94,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const flash = require("connect-flash");
+const { isNativeError } = require("util/types");
 app.use(
   session({ secret: "비밀번호코드", resave: true, saveUninitialized: false })
 );
@@ -183,11 +184,6 @@ app.get("/", function (요청, 응답) {
   console.log(요청.user);
   응답.render("home.ejs", { 사용자: 요청.user });
 });
-//notice화면
-app.get("/notice", function (요청, 응답) {
-  console.log(요청.user);
-  응답.render("notice.ejs", { 사용자: 요청.user });
-});
 
 //board화면
 app.get("/board/:id", function (요청, 응답) {
@@ -252,9 +248,75 @@ app.get("/posts/:postnumber", function (요청, 응답) {
   });
 });
 
-app.get("/board", function (요청, 응답) {
-  console.log(요청.user);
-  응답.render("Board.ejs", { 사용자: 요청.user, 게시물: 65 });
+//notice 페이지
+app.get("/notice/:id", function (요청, 응답) {
+  const { id } = 요청.params;
+  db.collection("notice-count").findOne(
+    { name: "최근공지번호" },
+    function (에러, 결과) {
+      var number = 결과.lastPost;
+      db.collection("notice")
+        .find()
+        .toArray(function (err, result) {
+          var 마스터계정 = 0;
+          if (
+            요청.user != undefined &&
+            요청.user.email == "dlrkdgh11111@naver.com"
+          ) {
+            마스터계정 = 1;
+          }
+          응답.render("notice.ejs", {
+            사용자: 요청.user,
+            공지: result,
+            페이지: id - 1,
+            총공지갯수: number - 1,
+            마스터계정: 마스터계정,
+          });
+        });
+    }
+  );
+});
+
+//notice write 페이지 get 요청
+app.get("/notice-write", function (요청, 응답) {
+  응답.render("Notice-write.ejs", { 사용자: 요청.user });
+});
+
+//notice write 페이지 post 요청
+app.post("/notice-write", function (요청, 응답) {
+  db.collection("notice-count").findOne(
+    {
+      name: "최근공지번호",
+    },
+    function (에러, 결과) {
+      db.collection("notice").insertOne(
+        {
+          _id: 결과.lastPost + 1,
+          Title: 요청.body.title,
+          Content: 요청.body.content,
+        },
+        function (에러, result) {
+          db.collection("notice-count").updateOne(
+            { name: "최근공지번호" },
+            { $inc: { lastPost: 1 } },
+            function (에러, 결과) {
+              응답.redirect("/notice/1");
+            }
+          );
+        }
+      );
+    }
+  );
+});
+//notie-post 페이지
+
+app.get("/noticeposts/:postnumber", function (요청, 응답) {
+  var { postnumber } = 요청.params;
+  postnumber = parseInt(postnumber);
+  db.collection("notice").findOne({ _id: postnumber }, function (에러, 결과) {
+    console.log(결과, postnumber);
+    응답.render("Notice-post.ejs", { 사용자: 요청.user, 공지: 결과 });
+  });
 });
 
 //contact화면

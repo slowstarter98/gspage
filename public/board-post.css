@@ -1,5 +1,7 @@
 .content-box {
   margin-left: 5px;
+  border: 1px solid #eee;
+  padding: 20px;
 }
 .lowContents {
   margin: 10px;

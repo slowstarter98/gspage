@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/board-post.css" />
+    <script src="../public/header.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Lab402</title>
+  </head>
+  <body>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
+
+    <div id="body">
+      <div id="wrap">
+        <section>
+          <article>
+            <h4>제목 : <%= 공지.Title %></h4>
+            <h4>내용</h4>
+            <div class="content-box"><%= 공지.Content %></div>
+          </article>
+          <div class="lowContents">
+            <h3>
+              <a class="toboard" href="/notice/1"> 공지로 이동 </a>
+            </h3>
+          </div>
+        </section>
+      </div>
+    </div>
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

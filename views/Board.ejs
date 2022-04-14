@@ -11,6 +11,10 @@
     <link rel="stylesheet" type="text/css" href="/public/main.css" />
     <link rel="stylesheet" type="text/css" href="/public/board.css" />
     <title>Lab402</title>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="../public/header.js" defer></script>
   </head>
   <body>
@@ -27,7 +31,7 @@
                 <tr>
                   <th>number</th>
                   <th>Title</th>
-                  <th> </th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -42,17 +46,56 @@
               </tbody>
             </table>
             <hr />
-            <div id="page-div">
+            <div id="page-div ">
               <ul class="page_nums">
 
-                <%if(게시물!=null){ for(var i=0 ;i < 5; i++ ){ %>
+                <% if(게시물!=null){ %>
 
-                  <li>
-                    <a href="<%= i+1 %>"> <%= i+1 %> </a>
-                  </li>
+                  <% if(페이지+1 <= 3){ %>
+                    <li>
+                      <a href="#"> <i class="fa-solid fa-angle-left"></i> </a>
+                    </li>
+                    <% for(var i=0 ;i < 5; i++ ){ %>
+                      <% if(i==페이지){%>
+                       <li>
+                        <a class="nowPage" href="<%= i+1 %>"> <%= i+1 %> </a>
+                       </li>
+                      <%}%>
+                      <%if(i!=페이지){%>
+                       <li>
+                        <a  href="<%= i+1 %>"> <%= i+1 %> </a>
+                       </li>
+                      <% }%>
+                    <% }%>
+                  <% }%>
 
-                  <%}  }%>
-    
+                  <% if(페이지+1 > 3) { %>
+                    <li>
+                      <a href="<%= 페이지-2 %>"> <i class="fa-solid fa-angle-left"></i> </a>
+                    </li>
+                    <li>
+                      <a href="<%= 페이지-1 %>"> <%= 페이지-1 %> </a>
+                    </li>
+                    <li>
+                      <a href="<%= 페이지 %>"> <%= 페이지 %> </a>
+                    </li>
+                    <li>
+                      <a class="nowPage" href="<%= 페이지+1 %>"> <%= 페이지+1 %> </a>
+                    </li>
+                    <li>
+                      <a href="<%= 페이지+2 %>"> <%= 페이지+2 %> </a>
+                    </li>
+                    <li>
+                      <a href="<%= 페이지+3 %>"> <%= 페이지+3 %> </a>
+                    </li>
+
+                  <%}%>
+                <%}%>
+
+                <li>
+                  <a href="<%= 페이지+4 %>"> <i class="fa-solid fa-angle-right"></i> </a>
+                </li>
+
               </ul>
             </div>
            </br></br>

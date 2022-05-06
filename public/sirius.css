@@ -1,4 +1,6 @@
 .send-button {
+  position: relative;
+  left: 500px;
   width: 120px;
   height: 30px;
   background-color: rgb(75, 131, 75);
@@ -36,7 +38,22 @@
   display: inline-block;
 }
 .chart-plot {
-  width: 700px;
+  width: 690px;
   height: 350px;
   border-radius: 10px;
+}
+.select-factor {
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+}
+
+.select-factor:focus {
+  outline: none;
+}
+
+.select-factor option {
+  border: none;
+  width: 150px;
+  height: 40px;
 }

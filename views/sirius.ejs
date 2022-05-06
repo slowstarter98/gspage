@@ -30,28 +30,28 @@
                   class="method-button"
                   type="radio"
                   name="type"
-                  value="A전략"
+                  value="전체 상장기업"
                   oninput="document.getElementById('value1').innerHTML=this.value;"
                 />
-                <p>A전략</p>
+                <p>전체 상장기업</p>
                 <br />
                 <input
                   class="method-button"
                   type="radio"
                   name="type"
-                  value="B전략"
+                  value="KOSPI"
                   oninput="document.getElementById('value1').innerHTML=this.value;"
                 />
-                <p>B전략</p>
+                <p>KOSPI</p>
                 <br />
                 <input
                   class="method-button"
                   type="radio"
                   name="type"
-                  value="C전략"
+                  value="KOSDAQ"
                   oninput="document.getElementById('value1').innerHTML=this.value;"
                 />
-                <p>C전략</p>
+                <p>KOSDAQ</p>
                 <br />
               </div>
               <div class="range-box">
@@ -67,12 +67,32 @@
                 <p>입력값:</p>
                 <p id="value1">50</p>
               </div>
+              <div class="select-box">
+                <select
+                  name="factor"
+                  class="select-factor"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                >
+                  <option value="시가총액">시가총액</option>
+                  <option value="매출액">매출액</option>
+                  <option value="영업이익">영업이익</option>
+                  <option value="당기순이익">당기순이익</option>
+                  <option value="PER">PER</option>
+                  <option value="PBR">PBR</option>
+                  <option value="ROE">ROE</option>
+                  <option value="영업이익률">영업이익률</option>
+                  <option value="당기순이익률">당이순이익률</option>
+                  <option value="ROA">ROA</option>
+                  <option value="부채비율">부채비율</option>
+                </select>
+              </div>
               <br />
               <button class="send-button" type="submit">전략적용</button>
             </form>
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-            <p></p>
-            <iframe class="chart-plot" src="/chart/<%= 개인 %>"></iframe>
+
+            <iframe name="chart" class="chart-plot" src="/chart/<%= 개인 %>">
+            </iframe>
 
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
           </article>

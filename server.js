@@ -381,20 +381,20 @@ app.get("/chart/:parameter", function (요청, 응답) {
   parameter = parseInt(parameter);
   db.collection("sirius-return").findOne(
     {
-      id: parameter,
+      _id: parameter,
     },
     function (에러, 결과) {
       if (결과 == undefined) {
-        응답.render("loading.ejs");
-        console.log(parameter);
+        응답.render("loading.ejs", { 현재개인: parameter });
+        console.log(parameter, "-----로딩화면---------");
       } else {
+        console.log(parameter, "@@@@차트화면@@@@@");
         응답.render("chart.ejs");
       }
     }
   );
 });
-
-//ifrmae post요청
+//iframe post요청
 app.post("/chart/:parameter", function (요청, 응답) {
   var { parameter } = 요청.params;
   parameter = parseInt(parameter);
@@ -405,8 +405,7 @@ app.post("/chart/:parameter", function (요청, 응답) {
     },
 
     function (에러, 결과) {
-      console.log("------------------");
-      응답.redirect("/chart/" + parameter);
+      console.log("--------포스트요청----------", parameter);
     }
   );
 });
@@ -423,6 +422,7 @@ app.post("/sirius", function (요청, 응답) {
           _id: 결과.lastInput + 1,
           Type: 요청.body.type,
           Range: 요청.body.range,
+          Factor: 요청.body.factor,
         },
         function (에러, result) {
           db.collection("sirius-count").updateOne(

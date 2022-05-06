@@ -4,8 +4,13 @@ const crypto = require("crypto");
 const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
-
+// 건수 추가 부분
+var count = 0;
+//
 app.set("view engine", "ejs");
+
+//views의 이미지 사용코드
+app.use(express.static("views"));
 
 app.use("/public", express.static("public"));
 
@@ -95,6 +100,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const flash = require("connect-flash");
 const { isNativeError } = require("util/types");
+const { fstat } = require("fs");
 app.use(
   session({ secret: "비밀번호코드", resave: true, saveUninitialized: false })
 );
@@ -238,6 +244,31 @@ app.post("/board-write", function (요청, 응답) {
     }
   );
 });
+app.post("/board-write", function (요청, 응답) {
+  db.collection("board-count").findOne(
+    {
+      name: "최근게시물번호",
+    },
+    function (에러, 결과) {
+      db.collection("board").insertOne(
+        {
+          _id: 결과.lastPost + 1,
+          Title: 요청.body.title,
+          Content: 요청.body.content,
+        },
+        function (에러, result) {
+          db.collection("board-count").updateOne(
+            { name: "최근게시물번호" },
+            { $inc: { lastPost: 1 } },
+            function (에러, 결과) {
+              응답.redirect("/board/1");
+            }
+          );
+        }
+      );
+    }
+  );
+});
 
 app.get("/posts/:postnumber", function (요청, 응답) {
   var { postnumber } = 요청.params;
@@ -309,7 +340,6 @@ app.post("/notice-write", function (요청, 응답) {
   );
 });
 //notie-post 페이지
-
 app.get("/noticeposts/:postnumber", function (요청, 응답) {
   var { postnumber } = 요청.params;
   postnumber = parseInt(postnumber);
@@ -341,6 +371,78 @@ app.get("/logout", function (요청, 응답) {
     응답.clearCookie("connect.sid");
     응답.redirect("/");
   });
+});
+
+count = 0;
+
+//iframe 로딩화면
+app.get("/chart/:parameter", function (요청, 응답) {
+  var { parameter } = 요청.params;
+  parameter = parseInt(parameter);
+  db.collection("sirius-return").findOne(
+    {
+      id: parameter,
+    },
+    function (에러, 결과) {
+      if (결과 == undefined) {
+        응답.render("loading.ejs");
+        console.log(parameter);
+      } else {
+        응답.render("chart.ejs");
+      }
+    }
+  );
+});
+
+//ifrmae post요청
+app.post("/chart/:parameter", function (요청, 응답) {
+  var { parameter } = 요청.params;
+  parameter = parseInt(parameter);
+
+  db.collection("sirius-return").insertOne(
+    {
+      _id: parameter,
+    },
+
+    function (에러, 결과) {
+      console.log("------------------");
+      응답.redirect("/chart/" + parameter);
+    }
+  );
+});
+
+// sirius post요청
+app.post("/sirius", function (요청, 응답) {
+  db.collection("sirius-count").findOne(
+    {
+      name: "요청갯수",
+    },
+    function (에러, 결과) {
+      db.collection("sirius").insertOne(
+        {
+          _id: 결과.lastInput + 1,
+          Type: 요청.body.type,
+          Range: 요청.body.range,
+        },
+        function (에러, result) {
+          db.collection("sirius-count").updateOne(
+            { name: "요청갯수" },
+            { $inc: { lastInput: 1 } },
+            function (에러, 결과) {
+              응답.redirect("/sirius");
+            }
+          );
+        }
+      );
+    }
+  );
+});
+
+//sirius화면
+app.get("/sirius", function (요청, 응답) {
+  console.log(요청.user);
+  count++;
+  응답.render("sirius.ejs", { 사용자: 요청.user, 개인: count });
 });
 
 function 로그인확인(요청, 응답, next) {

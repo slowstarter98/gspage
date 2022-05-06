@@ -18,3 +18,54 @@ section > article > h1 > a {
 section > article > h1 > a:hover {
   color: rgba(0, 0, 0, 0.9);
 }
+
+p {
+  font-size: 13px;
+}
+
+article {
+  height: 200px;
+}
+
+section {
+  width: 600px;
+  margin-bottom: 60px;
+}
+.intro {
+  margin-bottom: 50px;
+}
+.intro div {
+  float: left;
+  margin-bottom: 80px;
+}
+.intro-icon {
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: -10px;
+}
+
+.intro span {
+  font-size: 70px;
+}
+
+.first-section {
+  clear: both;
+  margin-left: calc(50% - 450px);
+}
+.second-section {
+  margin-left: calc(50% - 150px);
+}
+.third-section {
+  margin-left: calc(50% - 450px);
+}
+
+.article-bottom {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin-top: 30px;
+}
+.article-bottom i {
+  margin-right: 50px;
+}

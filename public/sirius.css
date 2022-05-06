@@ -1,0 +1,42 @@
+.send-button {
+  width: 120px;
+  height: 30px;
+  background-color: rgb(75, 131, 75);
+  border-radius: 2px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(245, 239, 230);
+}
+.send-button:hover {
+  background-color: darkgreen;
+}
+.form-box {
+  padding: 20px;
+}
+.method-button {
+  width: 20px;
+  height: 20px;
+}
+.method-box {
+  display: inline-block;
+  padding: 20px;
+  margin-right: 40px;
+  vertical-align: middle;
+}
+.method-box > p {
+  display: inline-block;
+}
+.range-box {
+  display: inline-block;
+  padding: 20px;
+  margin-right: 40px;
+}
+.range-box > p {
+  display: inline-block;
+}
+.chart-plot {
+  width: 700px;
+  height: 350px;
+  border-radius: 10px;
+}

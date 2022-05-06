@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/sirius.css" />
+    <script src="../public/header.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Lab402</title>
+  </head>
+  <body>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
+
+    <div id="body">
+      <div id="wrap">
+        <section>
+          <article>
+            <form action="/sirius" method="POST" class="form-box">
+              <div class="method-box">
+                <input
+                  class="method-button"
+                  type="radio"
+                  name="type"
+                  value="A전략"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                />
+                <p>A전략</p>
+                <br />
+                <input
+                  class="method-button"
+                  type="radio"
+                  name="type"
+                  value="B전략"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                />
+                <p>B전략</p>
+                <br />
+                <input
+                  class="method-button"
+                  type="radio"
+                  name="type"
+                  value="C전략"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                />
+                <p>C전략</p>
+                <br />
+              </div>
+              <div class="range-box">
+                <input
+                  type="range"
+                  name="range"
+                  value="range"
+                  min="0"
+                  max="100"
+                  step="1"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                /><br />
+                <p>입력값:</p>
+                <p id="value1">50</p>
+              </div>
+              <br />
+              <button class="send-button" type="submit">전략적용</button>
+            </form>
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+            <p></p>
+            <iframe class="chart-plot" src="/chart/<%= 개인 %>"></iframe>
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+          </article>
+        </section>
+      </div>
+    </div>
+
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

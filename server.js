@@ -388,12 +388,14 @@ app.get("/chart/:parameter", function (요청, 응답) {
         응답.render("loading.ejs", { 현재개인: parameter });
         console.log(parameter, "-----로딩화면---------");
       } else {
-        console.log(parameter, "@@@@차트화면@@@@@");
+        console.log(parameter, "@@@@차트화면@@@@@", 결과.APY);
+
         응답.render("chart.ejs");
       }
     }
   );
 });
+
 //iframe post요청
 app.post("/chart/:parameter", function (요청, 응답) {
   var { parameter } = 요청.params;
@@ -402,6 +404,14 @@ app.post("/chart/:parameter", function (요청, 응답) {
   db.collection("sirius-return").insertOne(
     {
       _id: parameter,
+      pfo_yield: 5.03,
+      APY: 2.01,
+      excess_p: 52.8,
+      MDD: -15.3,
+      Sharpe: 0.12,
+      graph:
+        "pfo=0-1.2-1.6-1.8-2.4-2.3-2.8-2.4-3.0-3.6-4.0-4.8-5.3/benchmark=0-1.1-...",
+      pfo_list: "A=8, B=6.8, C=6.4, D=5.3, E=4.2, F=4.1, G=3,8",
     },
 
     function (에러, 결과) {
@@ -421,7 +431,8 @@ app.post("/sirius", function (요청, 응답) {
         {
           _id: 결과.lastInput + 1,
           Type: 요청.body.type,
-          Range: 요청.body.range,
+          RangeLeft: 요청.body.rangeL,
+          RangeRight: 요청.body.rangeR,
           Factor: 요청.body.factor,
         },
         function (에러, result) {

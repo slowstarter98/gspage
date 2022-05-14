@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/contact.css" />
+    <title>Lab402</title>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../public/header.js" defer></script>
+  </head>
+  <body>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
+
+    <div id="body">
+      <div id="wrap">
+        <section>
+          <title_>
+            <h1>About</h1>
+          </title_>
+          <article id="first_intro">
+            <h1>Intro 1</h1>
+            <p>This is website is for production of Financial data.</p>
+            <br />
+            <p>
+              Originally made for developer himself, but it is finally
+              distributed now.
+            </p>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </article>
+          <article id="second_intro">
+            <h1>Intro 2</h1>
+            <p>You can contact the developer by email, facebook, phone.</p>
+            <br />
+            <p>Email : tmxmdkflr224@naver.com</p>
+            <br />
+            <p>facebook : @@@@@</p>
+            <br />
+            <p>phone : @@@@@</p>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+          </article>
+        </section>
+      </div>
+    </div>
+
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

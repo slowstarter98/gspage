@@ -1,0 +1,14 @@
+.content-box {
+  margin-left: 5px;
+  border: 1px solid #eee;
+  padding: 20px;
+}
+.lowContents {
+  margin: 10px;
+}
+.toboard {
+  color: rgba(0, 0, 0, 0.6);
+}
+.toboard:hover {
+  color: rgba(0, 0, 0, 0.9);
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/login.css" />
+    <title>Lab402</title>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../public/header.js" defer></script>
+  </head>
+  <body>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
+
+    <div id="body">
+      <div id="wrap">
+        <h1 style="margin-left: calc(50% - 375px)">login</h1>
+        <section>
+          <form
+            action="/login"
+            method="POST"
+            style="margin-left: 40px; width: 400px"
+          >
+            <div class="input-box">
+              <label><h4>Email</h4></label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                placeholder="email@example"
+              />
+            </div>
+            <div class="input-box">
+              <label><h4>Password</h4></label>
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                placeholder="password"
+              />
+            </div>
+            <button class="send-button" type="submit">Send</button>
+
+            <p><a href="/signup">Go to sign-up</a></p>
+          </form>
+        </section>
+      </div>
+    </div>
+
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

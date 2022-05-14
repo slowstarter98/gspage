@@ -425,6 +425,7 @@ app.post("/chart/:parameter", function (요청, 응답) {
      
        },
 
+       
     function (에러, 결과) {
       console.log("--------포스트요청----------", parameter);
       응답.render("chart.ejs",{그래프벤치데이터:dataset.graph_bench

@@ -1,5 +1,5 @@
 img.loader {
-  animation: rotate_image 2s linear infinite;
+  animation: rotate_image 1.5s linear infinite;
   transform-origin: 50% 50%;
 }
 
@@ -9,9 +9,9 @@ img.loader {
   }
 }
 .loader {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
   position: absolute;
-  right: calc(50% - 25px);
-  top: calc(50% - 25px);
+  right: calc(50% - 75px);
+  top: calc(50% - 75px);
 }

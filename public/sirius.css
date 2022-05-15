@@ -10,13 +10,14 @@
   font-weight: bold;
   color: rgb(245, 239, 230);
   top: 150px;
-  left: -300px;
+  left: -200px;
 }
 .send-button:hover {
   background-color: darkgreen;
 }
 .form-box {
   padding: 20px;
+  margin-left: 120px;
 }
 .method-button {
   width: 20px;
@@ -43,10 +44,14 @@
   display: inline-block;
 }
 .chart-plot {
-  width: 700px;
-  height: 600px;
+  position: relative;
+  left: -150px;
+  top: -100px;
+  width: 1300px;
+  height: 800px;
   border-radius: 10px;
   border: none;
+  -webkit-transform: scale(0.7, 0.7);
 }
 .select-box {
   padding: 20px;
@@ -147,6 +152,13 @@ form {
   align-items: center;
   width: 1000px;
   height: 400px;
+}
+section {
+  width: 1000px;
+  margin-left: calc(50% - 500px);
+}
+article {
+  width: 1000px;
 }
 article > p {
   margin: 0;

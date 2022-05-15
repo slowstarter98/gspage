@@ -8,111 +8,134 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-
     <link rel="stylesheet" type="text/css" href="/public/chart.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <title>Lab402</title>
   </head>
   <body>
-<!-- html 경계선------------------------ -->
+    <!-- html 경계선------------------------ -->
     <div id="wrap">
-        <div class="big-box">
-            <div class="backtesting-chart-box">
-                <h5>백테스팅 결과</h5>
-               
-                <!--차트가 그려질 부분-->
-                <canvas id="myChart"></canvas>
-              
-            <table class="parcent-box">
-                  <tbody >
-                    <tr>
-                        <td>2</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-                    </tr>
-                </tbody>
-            </table>
+      <div class="big-box">
+        <div class="backtesting-chart-box">
+          <h4>백테스팅 결과</h4>
 
+          <!--차트가 그려질 부분-->
+          <canvas id="myChart"></canvas>
         </div>
+        <div class="percent-box">
+          <table class="parcent-table">
+            <tbody>
+              <tr>
+                <td>포트폴리오 수익률</td>
+                <td><%=(메트릭스[0]*100).toFixed(2)%>%</td>
+              </tr>
+              <tr>
+                <td>연 환산 수익률</td>
+                <td><%=(메트릭스[1]*100).toFixed(2)%>%</td>
+              </tr>
+              <tr>
+                <td>벤치마크 초과수익률을 낼 확률</td>
+                <td><%=(메트릭스[2]*100).toFixed(2)%>%</td>
+              </tr>
+              <tr>
+                <td>MDD</td>
+                <td><%=(메트릭스[3]*100).toFixed(2)%>%</td>
+              </tr>
+              <tr>
+                <td>Sharpe</td>
+                <td><%=(메트릭스[4]*100).toFixed(2)%>%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            2011~2021년 위 전략으로 투자한다면 총
+            <%=(메트릭스[0]*100).toFixed(2)%>%의 수익률을 얻지만 투자 기간 동안
+            전고점 기준 최대 <%=(메트릭스[3]*100).toFixed(2)%>%의 수익이 난 적이
+            있습니다. 평균을 넘는 수익률을 낼 확률은
+            <%=(메트릭스[2]*100).toFixed(2)%>%입니다.
+          </p>
+        </div>
+      </div>
+      <h4>포트폴리오 구성</h4>
+
+      <table class="pfo-box">
+        <tbody>
+          <% for(var j=0; j<5; j++){ %>
+          <tr>
+            <% for(var i=0; i<6; i++){ %>
+            <td><%=피에프오네임[j*6+i]%></td>
+            <td><%=(피에프오웨이트[j*6+i]*100).toFixed(2)%>%</td>
+            <%}%>
+          </tr>
+          <%}%>
+        </tbody>
+      </table>
     </div>
     <!-- html 경계선------------------------ -->
-      <script type="text/javascript">
+    <script type="text/javascript">
 
-          var benchData= <%- JSON.stringify(그래프벤치데이터) %>;
-          var graphName=<%- JSON.stringify(그래프데이트) %>;
-          var pfoData=<%- JSON.stringify(그래프피에프오) %>;
-    
-        var years = new Array();
-        for(var i=0;i<120;i++){
-            if(i%12 == 0 ){
-                years[i]=graphName[i];
-            }
-            else{
-                years[i]=' ';
-            }
-        }
-        console.log(years);
-        var context = document
-            .getElementById('myChart')
-            .getContext('2d');
-        var myChart = new Chart(context, {
-            type: 'line', // 차트의 형태
-            data: { // 차트에 들어갈 데이터
-                labels: years,
-                datasets: [
-                    { //데이터
-                        label: 'test1', //차트 제목
-                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
-                        data:benchData,
-                        backgroundColor: [
-                            //색상
-                            'rgb(17, 105, 14)',
-                        ],
-                        borderColor: [
-                            //경계선 색상
-                            'rgb(15, 143, 10)'
-                        ],
-                        borderWidth: 1 //경계선 굵기
-                    } ,
-                    {
-                        label: 'test2',
-                        fill: false,
-                        data: pfoData,
-                        backgroundColor: 'rgb(10, 18, 120)',
-                        borderColor: 'rgb(23, 33, 165)',
-                        borderWidth: 1
-                    } 
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [
-                        {
-                            ticks: {
-                                suggestedMin: -0.1,
-                                suggestedMax:0.1,
-                                beginAtZero: false
-                            }
-                        }
-                    ]
-                }
-            }
-        });
+        var benchData= <%- JSON.stringify(그래프벤치데이터) %>;
+        var graphName=<%- JSON.stringify(그래프데이트) %>;
+        var pfoData=<%- JSON.stringify(그래프피에프오) %>;
+
+      var years = new Array();
+      for(var i=0;i<120;i++){
+          if(i%3 == 0 ){
+              years[i]=graphName[i];
+          }
+          else{
+              years[i]=' ';
+          }
+      }
+      console.log(years);
+      var context = document
+          .getElementById('myChart')
+          .getContext('2d');
+      var myChart = new Chart(context, {
+          type: 'line', // 차트의 형태
+          data: { // 차트에 들어갈 데이터
+              labels: years,
+              datasets: [
+                  { //데이터
+                      label: '유니버스 전체 수익률', //차트 제목
+                      fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                      data:benchData,
+                      backgroundColor: [
+                          //색상
+                          'rgb(17, 105, 14)',
+                      ],
+                      borderColor: [
+                          //경계선 색상
+                          'rgb(15, 143, 10)'
+                      ],
+                      borderWidth: 1 //경계선 굵기
+                      ,pointRadius:1, //포인터 반경 범위
+                  } ,
+                  {
+                      label: '포트폴리오 수익률',
+                      fill: false,
+                      data: pfoData,
+                      backgroundColor: 'rgb(10, 18, 120)',
+                      borderColor: 'rgb(23, 33, 165)',
+                      pointRadius:1, //포인터 반경 범위
+                      borderWidth: 1
+                  }
+              ]
+          },
+          options: {
+              scales: {
+                  yAxes: [
+                      {
+                          ticks: {
+                              suggestedMin: -0.1,
+                              suggestedMax:0.1,
+                              beginAtZero: false
+                          }
+                      }
+                  ]
+              }
+          }
+      });
     </script>
   </body>
 </html>

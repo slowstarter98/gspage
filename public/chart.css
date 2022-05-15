@@ -5,42 +5,56 @@
 }
 #wrap {
   margin-top: 25px;
-  width: 100%;
+  width: 1200px;
   height: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.big-box{
-  display:flex;
-  flex-direction: row;
+.big-box {
+  width: 100%;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 700px;
-  height: 600px;
-
 }
 /* chart-box */
-.backtesting-chart-box{
-
-  width: 700px;
-  height: 600px;
+.backtesting-chart-box {
+  width: 500px;
+  position: relative;
+  left: -100px;
 }
 
 /* table */
-table{
-  border-collapse : collapse
+table {
+  border-collapse: collapse;
 }
 
-td{
+td {
   padding: 10px;
-  padding-right:40px ;
+  padding-right: 40px;
 }
-
-td:nth-child(1){
-width: 100px;
-border: 1px solid rgb(17, 105, 14);
+.percent-box {
+  width: 420px;
 }
-td:nth-child(2){
-  border-right: 1.5px solid black;
-  }
+/* 벡테스팅 테이블 */
+.parcent-table td:nth-child(1) {
+  width: 150px;
+}
+.parcent-table td:nth-child(1) {
+  border-right: 1px solid black;
+  margin-left: 20px;
+}
+.parcent-table td:nth-child(2) {
+  padding-left: 40px;
+}
+/* 포트폴리오 테이블 */
+.pfo-box {
+  width: 1200px;
+  border: 1px solid black;
+  font-size: small;
+}
+.pfo-box td {
+  border-right: 1px solid black;
+  font-size: small;
+}

@@ -1,0 +1,266 @@
+@font-face {
+  font-family: "제발";
+  src: url("../fonts/SUIT-otf/SUIT-Thin.otf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+body {
+  color: #58666e;
+  background-color: #f3f3f3;
+  -webkit-font-smoothing: antialiased;
+  font-family: "제발";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+}
+h1 {
+  margin: 12px 0 12px 15px;
+  font-size: 48px;
+}
+
+section {
+  width: 750px;
+  margin-left: calc(50% - 375px);
+  margin-bottom: 30px;
+}
+article {
+  margin: 10px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/* 헤더 파트 -------------------------------------------------------- */
+
+header {
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+header > h2 {
+  padding: 0px 0px 0px 48px;
+}
+
+#second-floor {
+  width: 900px;
+  margin-left: calc(50% - 450px);
+  height: 80px;
+}
+
+/* DashBoard 아래항목---------------------------- */
+.hidden-floor {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: -43px;
+  width: 100%;
+  margin: auto;
+  z-index: 1;
+}
+.under-DashBoard {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  left: calc(50% - 450px + 59px);
+  top: -60px;
+  display: flex;
+  transition: all 500ms ease;
+}
+
+.under-DashBoard.active {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #fff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: -2px;
+  z-index: 5;
+  display: flex;
+}
+
+.under-DashBoard > li {
+  margin-right: 5px;
+  margin-left: 5px;
+  padding: 15px;
+}
+
+.under-DashBoard > li > a {
+  font-size: 17px;
+  margin-top: 10px;
+  color: rgba(0, 0, 0, 0.4);
+}
+.under-DashBoard > li > a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* 로그인 후 헤더파트---------------------------- */
+#username {
+  float: right;
+  margin-right: 20px;
+}
+#userPage {
+  padding: 10px;
+  float: right;
+  height: 100px;
+  text-align: center;
+  margin-right: 15px;
+}
+.logout {
+  margin: 15px 5px;
+  float: right;
+  background-color: white;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.4);
+}
+.logout:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+#sign-up {
+  float: right;
+  color: #58666e;
+  margin-right: 20px;
+}
+/* ----------------------------------------------- */
+#logo {
+  width: 40%;
+  float: left;
+  color: inherit;
+}
+
+.icon-box {
+  margin-right: 15px;
+  float: right;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.icon-box i {
+  font-size: 40px;
+  margin-left: 10px;
+}
+
+#log-in {
+  float: right;
+  color: #58666e;
+}
+
+#first-floor {
+  clear: both;
+  width: 900px;
+  margin-left: calc(50% - 450px);
+  margin-top: 40px;
+}
+
+nav {
+  display: inline-block;
+}
+
+.nav-items {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-items > li {
+  margin-right: 80px;
+  font-size: 20px;
+  padding: 15px;
+}
+
+.nav-items > li > a {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.nav-items > li > a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* ------------------------------------------------------------------------------- */
+
+#wrap {
+  min-width: 960px;
+  width: 100%;
+  margin-bottom: 80px;
+  /* wrap에 들어가는 component의 크기가  100vh - 252px 이하인 경우 */
+  /* 메뉴 누를때 마다 notice랑 board 페이지에서 스크롤 없는거 킹받아서 1 뺌 */
+  min-height: calc(100vh - 251px);
+  /* wrap에 들어있는 component 의 크기가 100vh-252px 이상일 경우 */
+  height: 100%;
+}
+footer {
+  position: absolute;
+  z-index: 3;
+  height: 72px;
+  width: 900px;
+  margin-left: calc(50% - 450px);
+  padding: 0 30px;
+  line-height: 20px;
+  color: #8a8c8f;
+  border-top: 1px solid #404647;
+  background-color: #f3f3f3;
+}
+
+footer div {
+  display: flex;
+  justify-content: center;
+}
+footer div i {
+  font-size: 60px;
+  transform: rotate(180deg);
+}
+footer div div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logo-p {
+  margin: 10px 0 0 0;
+}
+
+.footer-p {
+  font-size: 15px;
+  margin: 0;
+}
+
+/* sectiontitle 기존 색 , 마우스 올렸을때 색 */
+.sectionTitle {
+  color: rgba(0, 0, 0, 0.6);
+}
+.sTitle:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+/* 사이드 바 파트-------------------------------- */

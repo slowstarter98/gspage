@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+
+    <link rel="stylesheet" type="text/css" href="/public/chart.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <title>Lab402</title>
+  </head>
+  <body>
+<!-- html 경계선------------------------ -->
+    <div id="wrap">
+        <div class="big-box">
+            <div class="backtesting-chart-box">
+                <h5>백테스팅 결과</h5>
+               
+                <!--차트가 그려질 부분-->
+                <canvas id="myChart"></canvas>
+              
+            <table class="parcent-box">
+                  <tbody >
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <!-- html 경계선------------------------ -->
+      <script type="text/javascript">
+
+          var benchData= <%- JSON.stringify(그래프벤치데이터) %>;
+          var graphName=<%- JSON.stringify(그래프데이트) %>;
+          var pfoData=<%- JSON.stringify(그래프피에프오) %>;
+    
+        var years = new Array();
+        for(var i=0;i<120;i++){
+            if(i%12 == 0 ){
+                years[i]=graphName[i];
+            }
+            else{
+                years[i]=' ';
+            }
+        }
+        console.log(years);
+        var context = document
+            .getElementById('myChart')
+            .getContext('2d');
+        var myChart = new Chart(context, {
+            type: 'line', // 차트의 형태
+            data: { // 차트에 들어갈 데이터
+                labels: years,
+                datasets: [
+                    { //데이터
+                        label: 'test1', //차트 제목
+                        fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                        data:benchData,
+                        backgroundColor: [
+                            //색상
+                            'rgb(17, 105, 14)',
+                        ],
+                        borderColor: [
+                            //경계선 색상
+                            'rgb(15, 143, 10)'
+                        ],
+                        borderWidth: 1 //경계선 굵기
+                    } ,
+                    {
+                        label: 'test2',
+                        fill: false,
+                        data: pfoData,
+                        backgroundColor: 'rgb(10, 18, 120)',
+                        borderColor: 'rgb(23, 33, 165)',
+                        borderWidth: 1
+                    } 
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [
+                        {
+                            ticks: {
+                                suggestedMin: -0.1,
+                                suggestedMax:0.1,
+                                beginAtZero: false
+                            }
+                        }
+                    ]
+                }
+            }
+        });
+    </script>
+  </body>
+</html>

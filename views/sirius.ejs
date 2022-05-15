@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/public/sirius.css" />
+    <script src="../public/sirius.js" defer></script>
+    <script src="../public/header.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c3d18ec51c.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Lab402</title>
+  </head>
+  <body>
+    <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
+    <%if(사용자!==undefined){%> <%- include('header-login.html') %> <%}%>
+    
+    <div id="body">
+      <div id="wrap">
+        <section>
+          <article>
+            <h3>시리우스</h3>
+            <p>재무 데이터 기반의 팩터 추출 엔진입니다.</p>
+            <p>아직 베타 버전인 만큼, 앞으로 더 많은 기능들이 추가될 예정입니다.</p>
+            <br/>
+            <p>추가되었으면 하는 기능이 있다면 moggle.labs@gmail.com으로 문의주시면 감사하겠습니다.</p>
+            <form action="/sirius" method="POST" class="form-box">
+              <div class="select-box">
+                <p>펙터 재료</p>
+                <select
+                name="factor"
+                class="select-factor"
+                oninput="document.getElementById('value1').innerHTML=this.value;"
+                >
+                <option value="시가총액">시가총액</option>
+                <option value="매출액">매출액</option>
+                <option value="영업이익">영업이익</option>
+                <option value="당기순이익">당기순이익</option>
+                <option value="PER">PER</option>
+                <option value="PBR">PBR</option>
+                <option value="ROE">ROE</option>
+                <option value="영업이익률">영업이익률</option>
+                <option value="당기순이익률">당이순이익률</option>
+                <option value="ROA">ROA</option>
+                <option value="부채비율">부채비율</option>
+              </select>
+            </div>
+            
+              <div class="range-box">
+                <p>기준점 설정</p>
+                <div class="slider">
+                  <input
+                  type="range"
+                  id="input-left"
+                  name="rangeL"
+                  min="0"
+                  max="100"
+                  value="0"
+                  oninput="document.getElementById('value2').innerHTML=this.value;"
+                  />
+                  <input
+                  type="range"
+                  id="input-right"
+                  name="rangeR"
+                  min="1"
+                  max="100"
+                  value="100"
+                  oninput="document.getElementById('value3').innerHTML=this.value;"
+                  />
+                  <div class="track">
+                    <div class="range"></div>
+                    <div class="thumb left"></div>
+                    <div class="thumb right"></div>
+                  </div>
+                </div>
+                <br />
+                <p>value2입력값:</p>
+                <p id="value2">0</p>
+                <br />
+                <p>value3입력값:</p>
+                <p id="value3">100</p>
+                <br />
+                <p>value1입력값:</p>
+                <span id="value1">50</p>
+                  <br />
+                </div>
+              <div class="method-box">
+                <p>유니버스 설정</p>
+                <br/>
+                <input
+                  class="method-button"
+                  type="radio"
+                  name="type"
+                  value="전체 상장기업"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                />
+                <p>전체 상장기업</p>
+                <br />
+                <input
+                  class="method-button"
+                  type="radio"
+                  name="type"
+                  value="KOSPI"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                />
+                <p>KOSPI</p>
+                <br />
+                <input
+                  class="method-button"
+                  type="radio"
+                  name="type"
+                  value="KOSDAQ"
+                  oninput="document.getElementById('value1').innerHTML=this.value;"
+                />
+                <p>KOSDAQ</p>
+                <br />
+              </div>
+              <br />
+              <button class="send-button" type="submit">전략적용</button>
+            </form>
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+            <iframe name="chart" class="chart-plot" src="/chart/<%= 개인 %>">
+            </iframe>
+
+            <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+          </article>
+        </section>
+      </div>
+    </div>
+
+    <%- include('footer.html') %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+  </body>
+</html>

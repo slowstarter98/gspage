@@ -1,5 +1,5 @@
 img.loader {
-  animation: rotate_image 1.5s linear infinite;
+  animation: rotate_image 2s linear infinite;
   transform-origin: 50% 50%;
 }
 

@@ -441,7 +441,7 @@ app.post("/sirius", function (요청, 응답) {
   db.collection("sirius-count").findOne({}, function (에러, 결과) {
     db.collection("sirius").insertOne(
       {
-        _id: count--,
+        _id: 요청.session.chart_id,
         Type: 요청.body.type,
         RangeLeft: 요청.body.rangeL,
         RangeRight: 요청.body.rangeR,
@@ -452,6 +452,7 @@ app.post("/sirius", function (요청, 응답) {
           { name: "요청갯수" },
           { $inc: { lastInput: 1 } },
           function (에러, 결과) {
+              요청.session.from_POST = true;
             응답.redirect("/sirius");
           }
         );
@@ -463,8 +464,17 @@ app.post("/sirius", function (요청, 응답) {
 //sirius화면
 app.get("/sirius", function (요청, 응답) {
   console.log(요청.user);
+  console.log('이거', 요청.session.chart_id);
   count++;
-  응답.render("sirius.ejs", { 사용자: 요청.user, 개인: count });
+  if (요청.session.from_POST) {
+      요청.session.from_POST = false;
+  } else {
+      요청.session.from_POST = false;
+      요청.session.chart_id = count;
+  }
+  console.log(요청.session.chart_id);
+  console.log('count 증가');
+  응답.render("sirius.ejs", { 사용자: 요청.user, 개인: 요청.session.chart_id });
 });
 
 function 로그인확인(요청, 응답, next) {

@@ -16,7 +16,7 @@
       src="https://kit.fontawesome.com/c3d18ec51c.js"
       crossorigin="anonymous"
     ></script>
-    <title>Lab402</title>
+    <title>Moggle Labs</title>
   </head>
   <body>
     <%if(사용자 === undefined){ %> <%- include('header.html') %> <%}%>
@@ -48,7 +48,7 @@
                 <option value="PBR">PBR</option>
                 <option value="ROE">ROE</option>
                 <option value="영업이익률">영업이익률</option>
-                <option value="당기순이익률">당이순이익률</option>
+                <option value="당기순이익률">당기순이익률</option>
                 <option value="ROA">ROA</option>
                 <option value="부채비율">부채비율</option>
               </select>
@@ -77,20 +77,17 @@
                   />
                   <div class="track">
                     <div class="range"></div>
-                    <div class="thumb left"></div>
-                    <div class="thumb right"></div>
+<!--                    <div class="thumb left"></div>-->
+<!--                    <div class="thumb right"></div>-->
                   </div>
                 </div>
                 <br />
-                <p>value2입력값:</p>
-                <p id="value2">0</p>
+                <p>팩터 기준점:</p>
+                <p id="value2">0</p> - <p id="value3">100</p>
+<!--                <br />-->
+<!--                <p>팩터 기준점 상한:</p>-->
+<!--                <p id="value3">100</p>-->
                 <br />
-                <p>value3입력값:</p>
-                <p id="value3">100</p>
-                <br />
-                <p>value1입력값:</p>
-                <span id="value1">50</p>
-                  <br />
                 </div>
               <div class="method-box">
                 <p>유니버스 설정</p>

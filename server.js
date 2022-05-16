@@ -369,18 +369,18 @@ app.get("/guidline", function (요청, 응답) {
   응답.render("guidline.ejs", { 사용자: 요청.user });
 });
 //회원가입페이지
-app.get("/signup", function (요청, 응답) {
-  응답.render("sign.ejs", { 사용자: 요청.user });
-});
+// app.get("/signup", function (요청, 응답) {
+//   응답.render("sign.ejs", { 사용자: 요청.user });
+// });
 
 // header-login에서 logout버튼으로 get 요청시
-app.get("/logout", function (요청, 응답) {
-  // 세션쿠기 connect.sid 를 없애고 home으로 get요청을 보낸다.
-  요청.session.destroy(function () {
-    응답.clearCookie("connect.sid");
-    응답.redirect("/");
-  });
-});
+// app.get("/logout", function (요청, 응답) {
+//   // 세션쿠기 connect.sid 를 없애고 home으로 get요청을 보낸다.
+//   요청.session.destroy(function () {
+//     응답.clearCookie("connect.sid");
+//     응답.redirect("/");
+//   });
+// });
 
 count = 0;
 

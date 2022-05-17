@@ -10,15 +10,15 @@
 
     <link rel="stylesheet" type="text/css" href="/public/chart.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-    <title>Lab402</title>
+    <title>Moggle Labs</title>
   </head>
   <body>
     <!-- html 경계선------------------------ -->
     <div id="wrap">
+      <h3 style="font-size: 24px; font-weight: normal; border-bottom:1px solid rgb(100,100,100);">투자 전략 : <%=(요청값)%></h3>
       <div class="big-box">
         <div class="backtesting-chart-box">
-          <h4>백테스팅 결과</h4>
-
+          <h4 style="font-size:20px;font-weight: normal;">백테스팅 결과</h4>
           <!--차트가 그려질 부분-->
           <canvas id="myChart"></canvas>
         </div>
@@ -48,46 +48,46 @@
             </tbody>
           </table>
           <p>
-            2011~2021년 위 전략으로 투자한다면 총
-            <%=(메트릭스[0]*100).toFixed(2)%>%의 수익률을 얻지만 투자 기간 동안
-            전고점 기준 최대 <%=(메트릭스[3]*100).toFixed(2)%>%의 손실이 난 적이
-            있습니다. 평균을 넘는 수익률을 낼 확률은
-            <%=(메트릭스[2]*100).toFixed(2)%>%입니다.
+            2011~2021년 위 전략으로 투자한다면<br>
+            총 <span style="font-weight:bolder;"><%=(메트릭스[0]*100).toFixed(2)%>%</span>의 수익률을 얻지만,<br>
+            전고점 기준 최대 <span style="font-weight:bolder;"><%=(메트릭스[3]*100).toFixed(2)%>%</span>의
+            손실이 난 적 있습니다. <br>
+            시장평균보다 높은 수익률을 낼 확률은 <span style="font-weight:bolder;"><%=(메트릭스[2]*100).toFixed(2)%>%</span>입니다.
           </p>
         </div>
       </div>
-      <h4>포트폴리오 구성</h4>
+      <h4 style="font-size:24px; font-weight: normal;">포트폴리오 구성</h4>
 
       <table class="pfo-box">
         <tbody>
           <% for(var j=0; j<5; j++){ %>
           <tr>
             <% for(var i=0; i<6; i++){ %>
-            <td><%=피에프오네임[j*6+i]%></td>
-            <td><%=(피에프오웨이트[j*6+i]*100).toFixed(2)%>%</td>
+            <td><%=피에프오네임[j+i*5]%></td>
+            <td><%=(피에프오웨이트[j+i*5]*100).toFixed(2)%>%</td>
             <%}%>
           </tr>
           <%}%>
         </tbody>
       </table>
+      <button onclick="downloadCSV();">엑셀 다운로드</button>
     </div>
     <!-- html 경계선------------------------ -->
     <script type="text/javascript">
-
-        var benchData= <%- JSON.stringify(그래프벤치데이터) %>;
+        var benchData=<%- JSON.stringify(그래프벤치데이터) %>;
         var graphName=<%- JSON.stringify(그래프데이트) %>;
         var pfoData=<%- JSON.stringify(그래프피에프오) %>;
 
       var years = new Array();
-      for(var i=0;i<120;i++){
-          if(i%3 == 0 ){
+      for(var i=0;i<graphName.length;i++){
+          if(i%6 == 0 ){
               years[i]=graphName[i];
           }
           else{
               years[i]=' ';
           }
       }
-      console.log(years);
+      // console.log(years);
       var context = document
           .getElementById('myChart')
           .getContext('2d');
@@ -127,15 +127,51 @@
                   yAxes: [
                       {
                           ticks: {
-                              suggestedMin: -0.1,
-                              suggestedMax:0.1,
-                              beginAtZero: false
-                          }
+                              suggestedMin: Math.min(...benchData.concat(pfoData).map(Number))-10,
+                              suggestedMax: Math.max(...benchData.concat(pfoData).map(Number))+10,
+                              //Math.max(...benchData.concat(pfoData).map(Number))+10
+                              beginAtZero: false,
+                            fontSize: 18
+                          },
                       }
-                  ]
-              }
-          }
+                  ],
+                xAxes: [
+                  {
+                    ticks: {
+                      fontSize:15
+                    }
+                  }
+                ]
+              },
+              legend: {
+                display: true,
+                labels: {
+                  fontSize: 18
+                }
+              },
+            }
       });
     </script>
+  <script type="text/javascript">
+    var pfoWeight=<%- JSON.stringify(피에프오웨이트) %>;
+    var pfoName=<%- JSON.stringify(피에프오네임) %>;
+    var request=<%- JSON.stringify(요청값) %>;
+    function downloadCSV(){
+      var a = "";
+      for(var i=0; i<pfoWeight.length; i++){
+        a += pfoName[i] + "," + pfoWeight[i] + "\r\n";
+      }
+
+      var downloadLink = document.createElement("a");
+      var blob = new Blob(["\ufeff"+a], { type: "text/csv;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      downloadLink.href = url;
+      downloadLink.download = request + ".csv";
+
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }
+  </script>
   </body>
 </html>

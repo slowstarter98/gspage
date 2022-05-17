@@ -26,12 +26,15 @@
       <div id="wrap">
         <section>
           <article>
-            <h3>시리우스</h3>
-            <p>재무 데이터 기반의 팩터 추출 엔진입니다.</p>
-            <p>아직 베타 버전인 만큼, 앞으로 더 많은 기능들이 추가될 예정입니다.</p>
-            <br/>
-            <p>추가되었으면 하는 기능이 있다면 moggle.labs@gmail.com으로 문의주시면 감사하겠습니다.</p>
-            <p>저희가 궁금하시거나, 더 좋은 서비스를 빨리 만나보시고 싶으시다면 위 <span style="font-weight:bold;">About Us</span>를 클릭해 주세요.</p>
+            <div style="margin-left:30px; margin-top:15px;">
+              <h3>시리우스 <span style="font-weight:normal; font-size:15px;">- 베타버전</span></h3>
+              <br>
+              <p>재무 데이터 기반의 팩터 추출 엔진입니다.</p>
+              <p>관심 가져주시는 분이 많다면, 앞으로 더 많은 기능들을 추가해보겠습니다.</p>
+              <p></p>
+              <p>추가되었으면 하는 기능이 있다면 moggle.labs@gmail.com으로 문의주시면 감사하겠습니다.</p>
+              <p>저희 서비스에 대해 흥미가 생기셨다면 위 <span style="font-weight:bold;">About Us</span>를 클릭해 주세요.</p>
+            </div>
             <form action="/sirius" method="POST" class="form-box">
 
               <div class="select-box">
@@ -85,9 +88,7 @@
                 <br />
                 <p>팩터 기준점:</p>
                 <p id="value2">0</p> - <p id="value3">100</p>
-<!--                <br />-->
-<!--                <p>팩터 기준점 상한:</p>-->
-<!--                <p id="value3">100</p>-->
+                <p style="opacity:0.7;">위의 초록색 원을 움직여 <br>범위를 조절해주세요.</p>
                 <br />
                 </div>
               <div class="method-box">
@@ -122,11 +123,11 @@
                 <br />
               </div>
               <br />
-              <button class="send-button" type="submit">전략적용</button>
+              <button class="send-button" type="submit">전략 적용</button>
             </form>
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- <%= 개인 %> -->
-            <p>결과값이 나온 후 다시 전략 적용을 하시려면, 새로고침 후 로딩 화면이 뜬 상태에서 눌러주세요.</p>
+            <div style="margin-left:30px;"><p>결과값이 나온 후 다시 전략 적용을 하시려면, 새로고침 후 로딩 화면이 뜬 상태에서 눌러주세요.</p></div>
             <iframe name="chart" class="chart-plot" src="/chart/<%= 개인 %>">
             </iframe>
 

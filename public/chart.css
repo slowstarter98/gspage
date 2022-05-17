@@ -5,7 +5,7 @@
 }
 #wrap {
   margin-top: 25px;
-  width: 1200px;
+  width: 1300px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -20,9 +20,9 @@
 }
 /* chart-box */
 .backtesting-chart-box {
-  width: 500px;
+  width: 1200px;
   position: relative;
-  left: -100px;
+  /*left: -100px;*/
 }
 
 /* table */
@@ -32,29 +32,48 @@ table {
 
 td {
   padding: 10px;
-  padding-right: 40px;
+  padding-right: 10px;
 }
 .percent-box {
-  width: 420px;
+  width: 600px;
+  margin-left:20px;
+  font-size: 17px;
 }
 /* 벡테스팅 테이블 */
 .parcent-table td:nth-child(1) {
-  width: 150px;
+  width: 180px;
 }
 .parcent-table td:nth-child(1) {
   border-right: 1px solid black;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .parcent-table td:nth-child(2) {
-  padding-left: 40px;
+  padding-left: 20px;
 }
 /* 포트폴리오 테이블 */
 .pfo-box {
   width: 1200px;
   border: 1px solid black;
-  font-size: small;
+  font-size: 14px;
 }
 .pfo-box td {
   border-right: 1px solid black;
-  font-size: small;
+  font-size: 16px;
+}
+button {
+  position: relative;
+  background-color: rgb(75, 131, 75);
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(245, 239, 230);
+  margin-top: 20px;
+  right:-525px;
+}
+
+button:hover {
+  background-color: darkgreen;
 }

@@ -9,15 +9,17 @@
 
   font-weight: bold;
   color: rgb(245, 239, 230);
-  top: 150px;
-  left: -200px;
+  top: 100px;
+  left: -150px;
 }
 .send-button:hover {
   background-color: darkgreen;
 }
 .form-box {
   padding: 20px;
-  margin-left: 120px;
+  margin-left: 20px;
+  height:350px;
+  width:960px;
 }
 .method-button {
   width: 20px;
@@ -30,6 +32,7 @@
   padding: 20px;
   margin-right: 40px;
   vertical-align: middle;
+  margin-left: 20px;
 }
 .method-box > p {
   display: inline-block;
@@ -38,17 +41,17 @@
   height: 300px;
   display: inline-block;
   padding: 20px;
-  margin-left: 50px;
+  margin-left: 70px;
 }
 .range-box > p {
   display: inline-block;
 }
 .chart-plot {
   position: relative;
-  left: -150px;
-  top: -100px;
-  width: 1300px;
-  height: 800px;
+  left: -200px;
+  top: -150px;
+  width: 1500px;
+  height: 1000px;
   border-radius: 10px;
   border: none;
   -webkit-transform: scale(0.7, 0.7);
@@ -86,9 +89,8 @@
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  left: -50px;
+  left: -20px;
   top: -10px;
-  left: -25px;
 }
 
 .slider input {

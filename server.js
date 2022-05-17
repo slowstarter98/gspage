@@ -117,21 +117,21 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //로그인페이지
-app.get("/login", function (요청, 응답) {
-  응답.render("login.ejs", { 사용자: 요청.user });
-});
+// app.get("/login", function (요청, 응답) {
+//   응답.render("login.ejs", { 사용자: 요청.user });
+// });
 
 //로그인 요청
-app.post(
-  "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-  }),
-  function (요청, 응답) {
-    console.log("로그인 성공", 요청.user);
-    응답.render("home.ejs", { 사용자: 요청.user });
-  }
-);
+// app.post(
+//   "/login",
+//   passport.authenticate("local", {
+//     failureRedirect: "/login",
+//   }),
+//   function (요청, 응답) {
+//     console.log("로그인 성공", 요청.user);
+//     응답.render("home.ejs", { 사용자: 요청.user });
+//   }
+// );
 
 passport.use(
   new LocalStrategy(
@@ -189,10 +189,10 @@ passport.deserializeUser(function (이메일, done) {
 });
 
 //마이페이지
-app.get("/mypage", 로그인확인, function (요청, 응답) {
-  console.log(요청.user);
-  응답.render("myPage.ejs", { 사용자: 요청.user });
-});
+// app.get("/mypage", 로그인확인, function (요청, 응답) {
+//   console.log(요청.user);
+//   응답.render("myPage.ejs", { 사용자: 요청.user });
+// });
 
 //홈화면
 app.get("/", function (요청, 응답) {
@@ -201,173 +201,173 @@ app.get("/", function (요청, 응답) {
 });
 
 //board화면
-app.get("/board/:id", function (요청, 응답) {
-  const { id } = 요청.params;
-  db.collection("board-count").findOne(
-    { name: "최근게시물번호" },
-    function (에러, 결과) {
-      var number = 결과.lastPost;
-      db.collection("board")
-        .find()
-        .toArray(function (err, result) {
-          console.log(result);
-          응답.render("Board.ejs", {
-            사용자: 요청.user,
-            게시물: result,
-            페이지: id - 1,
-            총게시물갯수: number - 1,
-          });
-        });
-    }
-  );
-});
+// app.get("/board/:id", function (요청, 응답) {
+//   const { id } = 요청.params;
+//   db.collection("board-count").findOne(
+//     { name: "최근게시물번호" },
+//     function (에러, 결과) {
+//       var number = 결과.lastPost;
+//       db.collection("board")
+//         .find()
+//         .toArray(function (err, result) {
+//           console.log(result);
+//           응답.render("Board.ejs", {
+//             사용자: 요청.user,
+//             게시물: result,
+//             페이지: id - 1,
+//             총게시물갯수: number - 1,
+//           });
+//         });
+//     }
+//   );
+// });
 
 // board-write 페이지 get 요청
-app.get("/board-write", function (요청, 응답) {
-  응답.render("Board-write.ejs", { 사용자: 요청.user });
-});
+// app.get("/board-write", function (요청, 응답) {
+//   응답.render("Board-write.ejs", { 사용자: 요청.user });
+// });
 
 // board-write 페이지 post 요청
-app.post("/board-write", function (요청, 응답) {
-  db.collection("board-count").findOne(
-    {
-      name: "최근게시물번호",
-    },
-    function (에러, 결과) {
-      db.collection("board").insertOne(
-        {
-          _id: 결과.lastPost + 1,
-          Title: 요청.body.title,
-          Content: 요청.body.content,
-        },
-        function (에러, result) {
-          db.collection("board-count").updateOne(
-            { name: "최근게시물번호" },
-            { $inc: { lastPost: 1 } },
-            function (에러, 결과) {
-              응답.redirect("/board/1");
-            }
-          );
-        }
-      );
-    }
-  );
-});
-app.post("/board-write", function (요청, 응답) {
-  db.collection("board-count").findOne(
-    {
-      name: "최근게시물번호",
-    },
-    function (에러, 결과) {
-      db.collection("board").insertOne(
-        {
-          _id: 결과.lastPost + 1,
-          Title: 요청.body.title,
-          Content: 요청.body.content,
-        },
-        function (에러, result) {
-          db.collection("board-count").updateOne(
-            { name: "최근게시물번호" },
-            { $inc: { lastPost: 1 } },
-            function (에러, 결과) {
-              응답.redirect("/board/1");
-            }
-          );
-        }
-      );
-    }
-  );
-});
+// app.post("/board-write", function (요청, 응답) {
+//   db.collection("board-count").findOne(
+//     {
+//       name: "최근게시물번호",
+//     },
+//     function (에러, 결과) {
+//       db.collection("board").insertOne(
+//         {
+//           _id: 결과.lastPost + 1,
+//           Title: 요청.body.title,
+//           Content: 요청.body.content,
+//         },
+//         function (에러, result) {
+//           db.collection("board-count").updateOne(
+//             { name: "최근게시물번호" },
+//             { $inc: { lastPost: 1 } },
+//             function (에러, 결과) {
+//               응답.redirect("/board/1");
+//             }
+//           );
+//         }
+//       );
+//     }
+//   );
+// });
+// app.post("/board-write", function (요청, 응답) {
+//   db.collection("board-count").findOne(
+//     {
+//       name: "최근게시물번호",
+//     },
+//     function (에러, 결과) {
+//       db.collection("board").insertOne(
+//         {
+//           _id: 결과.lastPost + 1,
+//           Title: 요청.body.title,
+//           Content: 요청.body.content,
+//         },
+//         function (에러, result) {
+//           db.collection("board-count").updateOne(
+//             { name: "최근게시물번호" },
+//             { $inc: { lastPost: 1 } },
+//             function (에러, 결과) {
+//               응답.redirect("/board/1");
+//             }
+//           );
+//         }
+//       );
+//     }
+//   );
+// });
 
-app.get("/posts/:postnumber", function (요청, 응답) {
-  var { postnumber } = 요청.params;
-  postnumber = parseInt(postnumber);
-  db.collection("board").findOne({ _id: postnumber }, function (에러, 결과) {
-    console.log(결과, postnumber);
-    응답.render("Board-post.ejs", { 사용자: 요청.user, 게시물: 결과 });
-  });
-});
+// app.get("/posts/:postnumber", function (요청, 응답) {
+//   var { postnumber } = 요청.params;
+//   postnumber = parseInt(postnumber);
+//   db.collection("board").findOne({ _id: postnumber }, function (에러, 결과) {
+//     console.log(결과, postnumber);
+//     응답.render("Board-post.ejs", { 사용자: 요청.user, 게시물: 결과 });
+//   });
+// });
 
 //notice 페이지
-app.get("/notice/:id", function (요청, 응답) {
-  const { id } = 요청.params;
-  db.collection("notice-count").findOne(
-    { name: "최근공지번호" },
-    function (에러, 결과) {
-      var number = 결과.lastPost;
-      db.collection("notice")
-        .find()
-        .toArray(function (err, result) {
-          var 마스터계정 = 0;
-          if (
-            요청.user != undefined &&
-            요청.user.email == "dlrkdgh11111@naver.com"
-          ) {
-            마스터계정 = 1;
-          }
-          응답.render("notice.ejs", {
-            사용자: 요청.user,
-            공지: result,
-            페이지: id - 1,
-            총공지갯수: number - 1,
-            마스터계정: 마스터계정,
-          });
-        });
-    }
-  );
-});
+// app.get("/notice/:id", function (요청, 응답) {
+//   const { id } = 요청.params;
+//   db.collection("notice-count").findOne(
+//     { name: "최근공지번호" },
+//     function (에러, 결과) {
+//       var number = 결과.lastPost;
+//       db.collection("notice")
+//         .find()
+//         .toArray(function (err, result) {
+//           var 마스터계정 = 0;
+//           if (
+//             요청.user != undefined &&
+//             요청.user.email == "dlrkdgh11111@naver.com"
+//           ) {
+//             마스터계정 = 1;
+//           }
+//           응답.render("notice.ejs", {
+//             사용자: 요청.user,
+//             공지: result,
+//             페이지: id - 1,
+//             총공지갯수: number - 1,
+//             마스터계정: 마스터계정,
+//           });
+//         });
+//     }
+//   );
+// });
 
 //notice write 페이지 get 요청
-app.get("/notice-write", function (요청, 응답) {
-  응답.render("Notice-write.ejs", { 사용자: 요청.user });
-});
+// app.get("/notice-write", function (요청, 응답) {
+//   응답.render("Notice-write.ejs", { 사용자: 요청.user });
+// });
 
 //notice write 페이지 post 요청
-app.post("/notice-write", function (요청, 응답) {
-  db.collection("notice-count").findOne(
-    {
-      name: "최근공지번호",
-    },
-    function (에러, 결과) {
-      db.collection("notice").insertOne(
-        {
-          _id: 결과.lastPost + 1,
-          Title: 요청.body.title,
-          Content: 요청.body.content,
-        },
-        function (에러, result) {
-          db.collection("notice-count").updateOne(
-            { name: "최근공지번호" },
-            { $inc: { lastPost: 1 } },
-            function (에러, 결과) {
-              응답.redirect("/notice/1");
-            }
-          );
-        }
-      );
-    }
-  );
-});
+// app.post("/notice-write", function (요청, 응답) {
+//   db.collection("notice-count").findOne(
+//     {
+//       name: "최근공지번호",
+//     },
+//     function (에러, 결과) {
+//       db.collection("notice").insertOne(
+//         {
+//           _id: 결과.lastPost + 1,
+//           Title: 요청.body.title,
+//           Content: 요청.body.content,
+//         },
+//         function (에러, result) {
+//           db.collection("notice-count").updateOne(
+//             { name: "최근공지번호" },
+//             { $inc: { lastPost: 1 } },
+//             function (에러, 결과) {
+//               응답.redirect("/notice/1");
+//             }
+//           );
+//         }
+//       );
+//     }
+//   );
+// });
 //notie-post 페이지
-app.get("/noticeposts/:postnumber", function (요청, 응답) {
-  var { postnumber } = 요청.params;
-  postnumber = parseInt(postnumber);
-  db.collection("notice").findOne({ _id: postnumber }, function (에러, 결과) {
-    console.log(결과, postnumber);
-    응답.render("Notice-post.ejs", { 사용자: 요청.user, 공지: 결과 });
-  });
-});
+// app.get("/noticeposts/:postnumber", function (요청, 응답) {
+//   var { postnumber } = 요청.params;
+//   postnumber = parseInt(postnumber);
+//   db.collection("notice").findOne({ _id: postnumber }, function (에러, 결과) {
+//     console.log(결과, postnumber);
+//     응답.render("Notice-post.ejs", { 사용자: 요청.user, 공지: 결과 });
+//   });
+// });
 
 //contact화면
-app.get("/contact", function (요청, 응답) {
-  console.log(요청.user);
-  응답.render("contact.ejs", { 사용자: 요청.user });
-});
+// app.get("/contact", function (요청, 응답) {
+//   console.log(요청.user);
+//   응답.render("contact.ejs", { 사용자: 요청.user });
+// });
 //guidline화면
-app.get("/guidline", function (요청, 응답) {
-  console.log(요청.user);
-  응답.render("guidline.ejs", { 사용자: 요청.user });
-});
+// app.get("/guidline", function (요청, 응답) {
+//   console.log(요청.user);
+//   응답.render("guidline.ejs", { 사용자: 요청.user });
+// });
 //회원가입페이지
 // app.get("/signup", function (요청, 응답) {
 //   응답.render("sign.ejs", { 사용자: 요청.user });
@@ -406,6 +406,7 @@ app.get("/chart/:parameter", function (요청, 응답) {
           메트릭스: 결과.메트릭스,
           그래프데이트: 결과.그래프데이트,
           그래프피에프오: 결과.그래프피에프오,
+            요청값: 결과.요청값,
         });
         db.collection("sirius-return").deleteOne({
           _id: parameter,
@@ -428,6 +429,7 @@ app.post("/chart/:parameter", function (요청, 응답) {
       메트릭스: 요청.body.metrics,
       그래프데이트: 요청.body.graph_date,
       그래프피에프오: 요청.body.graph_pfo,
+        요청값: 요청.body.request_data,
     },
     function (에러, 결과) {
       console.log("--------포스트요청----------", parameter);

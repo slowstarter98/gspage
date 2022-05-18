@@ -38,7 +38,7 @@
             <form action="/sirius" method="POST" class="form-box">
 
               <div class="select-box">
-                <p>펙터 재료</p>
+                <p>팩터 재료</p>
                 <select
                 name="factor"
                 class="select-factor"
@@ -89,6 +89,8 @@
                 <p>팩터 기준점:</p>
                 <p id="value2">0</p> - <p id="value3">100</p>
                 <p style="opacity:0.7;">위의 초록색 원을 움직여 <br>범위를 조절해주세요.</p>
+                <br>
+                <p style="opacity:0.7;">* 팩터 스코어가 높을수록 <br>백분위가 높습니다.</p>
                 <br />
                 </div>
               <div class="method-box">
@@ -127,11 +129,12 @@
             </form>
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- <%= 개인 %> -->
-            <div style="margin-left:30px;"><p>결과값이 나온 후 다시 전략 적용을 하시려면, 새로고침 후 로딩 화면이 뜬 상태에서 눌러주세요.</p></div>
             <iframe name="chart" class="chart-plot" src="/chart/<%= 개인 %>">
             </iframe>
 
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+            본 웹사이트를 통해 제공되는 정보는 투자 자문이나 권유에 해당하지 않습니다. <br>
+            정보의 활용에 대한 결정 및 책임은 사용자에게 있습니다.
           </article>
         </section>
       </div>

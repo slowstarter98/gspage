@@ -1,4 +1,5 @@
 /* Section */
+
 article > h1 {
   padding: 0 0 10px 0;
 }
@@ -68,4 +69,11 @@ section {
 }
 .article-bottom i {
   margin-right: 50px;
+}
+
+@font-face {
+  font-family: '국립박물관문화재단클래식M';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/국립박물관문화재단클래식M.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

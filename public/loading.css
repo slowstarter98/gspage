@@ -3,6 +3,10 @@ img.loader {
   transform-origin: 50% 50%;
 }
 
+body {
+  font-family: 'GowunDodum-Regular';
+}
+
 @keyframes rotate_image {
   100% {
     transform: rotate(360deg);
@@ -14,4 +18,11 @@ img.loader {
   position: absolute;
   right: calc(50% - 75px);
   top: calc(50% - 75px);
+}
+
+@font-face {
+  font-family: 'GowunDodum-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

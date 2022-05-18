@@ -440,6 +440,8 @@ app.post("/chart/:parameter", function (요청, 응답) {
 
 // sirius post요청
 app.post("/sirius", function (요청, 응답) {
+    count++;
+    요청.session.chart_id = count;
   db.collection("sirius-count").findOne({}, function (에러, 결과) {
     db.collection("sirius").insertOne(
       {
@@ -465,9 +467,6 @@ app.post("/sirius", function (요청, 응답) {
 
 //sirius화면
 app.get("/sirius", function (요청, 응답) {
-  console.log(요청.user);
-  console.log('이거', 요청.session.chart_id);
-  count++;
   if (요청.session.from_POST) {
       요청.session.from_POST = false;
   } else {

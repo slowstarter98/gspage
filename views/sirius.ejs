@@ -38,9 +38,11 @@
                 전략 적용 과정의 구체적인 내용을 확인하고 싶으시다면 <span style="font-weight:bold;">Sirius Web Docs</span>를 확인해 주세요.
             </div>
             <form action="/sirius" method="POST" class="form-box">
-
+              <div style="display: flex;">
+              <div style="display: flex; flex-direction: column; width: 480px;">
+                <div style="display: flex;">
               <div class="select-box">
-                <p>팩터 재료</p>
+                <p>팩터 재료 A</p>
                 <select
                 name="factor"
                 class="select-factor"
@@ -61,7 +63,7 @@
             </div>
             
               <div class="range-box">
-                <p>기준점 설정</p>
+                <p>기준점 설정 1</p>
                 <div class="slider">
                   <input
                   type="range"
@@ -83,51 +85,179 @@
                   />
                   <div class="track">
                     <div class="range"></div>
-<!--                    <div class="thumb left"></div>-->
-<!--                    <div class="thumb right"></div>-->
                   </div>
                 </div>
-                <br />
-                <p>팩터 기준점:</p>
+                <p>팩터 기준점 1:</p>
                 <p id="value2">0</p> - <p id="value3">100</p>
-                <p style="opacity:0.7;">위의 초록색 원을 움직여 <br>범위를 조절해주세요.</p>
-                <br>
-                <p style="opacity:0.7;">* 팩터 스코어가 높을수록 <br>백분위가 높습니다.</p>
-                <br />
                 </div>
-              <div class="method-box">
-                <p>유니버스 설정</p>
-                <br/>
-                <input
-                  class="method-button"
-                  type="radio"
-                  name="type"
-                  value="전체 상장기업"
-                  oninput="document.getElementById('value1').innerHTML=this.value;"
-                />
-                <p>전체 상장기업</p>
-                <br />
-                <input
-                  class="method-button"
-                  type="radio"
-                  name="type"
-                  value="KOSPI"
-                  oninput="document.getElementById('value1').innerHTML=this.value;"
-                />
-                <p>KOSPI</p>
-                <br />
-                <input
-                  class="method-button"
-                  type="radio"
-                  name="type"
-                  value="KOSDAQ"
-                  oninput="document.getElementById('value1').innerHTML=this.value;"
-                />
-                <p>KOSDAQ</p>
-                <br />
+
+                </div>
+<!--              새로추가한부분@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+                <div style="display: flex;">
+              <div class="select-box" style="display: block;">
+                <p>팩터 재료 B</p>
+                <select
+                        name="factor2"
+                        class="select-factor"
+                        oninput="document.getElementById('value4').innerHTML=this.value;"
+                >
+                  <option value="시가총액">시가총액</option>
+                  <option value="매출액">매출액</option>
+                  <option value="영업이익">영업이익</option>
+                  <option value="당기순이익">당기순이익</option>
+                  <option value="PER">PER</option>
+                  <option value="PBR">PBR</option>
+                  <option value="ROE">ROE</option>
+                  <option value="영업이익률">영업이익률</option>
+                  <option value="당기순이익률">당기순이익률</option>
+                  <option value="ROA">ROA</option>
+                  <option value="부채비율">부채비율</option>
+                </select>
               </div>
-              <br />
+
+              <div class="range-box" style="display:block;">
+                <p>기준점 설정 2</p>
+                <div class="slider">
+                  <input
+                          type="range"
+                          id="input-left"
+                          name="rangeL2"
+                          min="0"
+                          max="100"
+                          value="0"
+                          oninput="document.getElementById('value5').innerHTML=this.value;"
+                  />
+                  <input
+                          type="range"
+                          id="input-right"
+                          name="rangeR2"
+                          min="1"
+                          max="100"
+                          value="100"
+                          oninput="document.getElementById('value6').innerHTML=this.value;"
+                  />
+                  <div class="track">
+                    <div class="range"></div>
+                    <!--                    <div class="thumb left"></div>-->
+                    <!--                    <div class="thumb right"></div>-->
+                  </div>
+                </div>
+                <p>팩터 기준점 2:</p>
+                <p id="value5">0</p> - <p id="value6">100</p>
+                <br>
+              </div>
+                </div>
+                <div style="display: flex;">
+                <div class="select-box" style="display: block;">
+                  <p>팩터 재료 C</p>
+                  <select
+                          name="factor3"
+                          class="select-factor"
+                          oninput="document.getElementById('value7').innerHTML=this.value;"
+                  >
+                    <option value="시가총액">시가총액</option>
+                    <option value="매출액">매출액</option>
+                    <option value="영업이익">영업이익</option>
+                    <option value="당기순이익">당기순이익</option>
+                    <option value="PER">PER</option>
+                    <option value="PBR">PBR</option>
+                    <option value="ROE">ROE</option>
+                    <option value="영업이익률">영업이익률</option>
+                    <option value="당기순이익률">당기순이익률</option>
+                    <option value="ROA">ROA</option>
+                    <option value="부채비율">부채비율</option>
+                  </select>
+                </div>
+
+                <div class="range-box" style="display:block;">
+                  <p>기준점 설정 3</p>
+                  <div class="slider">
+                    <input
+                            type="range"
+                            id="input-left"
+                            name="rangeL3"
+                            min="0"
+                            max="100"
+                            value="0"
+                            oninput="document.getElementById('value8').innerHTML=this.value;"
+                    />
+                    <input
+                            type="range"
+                            id="input-right"
+                            name="rangeR3"
+                            min="1"
+                            max="100"
+                            value="100"
+                            oninput="document.getElementById('value9').innerHTML=this.value;"
+                    />
+                    <div class="track">
+                      <div class="range"></div>
+                      <!--                    <div class="thumb left"></div>-->
+                      <!--                    <div class="thumb right"></div>-->
+                    </div>
+                  </div>
+                  <p>팩터 기준점 3:</p>
+                  <p id="value8">0</p> - <p id="value9">100</p>
+                  <br>
+                </div>
+                <br />
+
+              </div>
+              </div>
+                            <div class="method-box" style="width: 400px;">
+                              <p>유니버스 설정</p>
+                              <br/>
+                              <input
+                                class="method-button"
+                                type="radio"
+                                name="type"
+                                value="전체 상장기업"
+                                oninput="document.getElementById('value1').innerHTML=this.value;"
+                              />
+                              <p>전체 상장기업</p>
+                              <br />
+                              <input
+                                class="method-button"
+                                type="radio"
+                                name="type"
+                                value="KOSPI"
+                                oninput="document.getElementById('value1').innerHTML=this.value;"
+                              />
+                              <p>KOSPI</p>
+                              <br />
+                              <input
+                                class="method-button"
+                                type="radio"
+                                name="type"
+                                value="KOSDAQ"
+                                oninput="document.getElementById('value1').innerHTML=this.value;"
+                              />
+                              <p>KOSDAQ</p>
+                              <br />
+                              <br>
+                              <p style="opacity:0.7;">좌측의 초록색 원을 움직여 범위를 조절해주세요.</p>
+                              <br>
+                              <p style="opacity:0.7;">팩터 스코어가 높을수록 백분위가 높습니다.</p>
+                              <br /><br><br>
+                              <p>* 팩터 투자 계산식을 아래에 적어주세요.</p>
+                              <input type="text" name="computation" placeholder="Ex) (A + B) / C & C" style="width:300px;"/>
+                              <br><br>
+                              <p>적용 가능한 연산기호는 +, -, *, /, ( )이 있습니다.<br> 팩터 별로 &를 통해 구분지어 주세요.</p>
+                            </div>
+
+<!--              여기까지-->
+              </div>
               <button class="send-button" type="submit">전략 적용</button>
+
+              <p>
+                멀티 팩터를 지원할 뿐만 아니라, 팩터 재료 간 연산을 지원하기 위해 수식을 추가하였습니다.<br><br>
+                예를 들어, 팩터 재료 A = 시가총액,  B = 매출액,  C = ROE 라고 할 때<br>
+                첫 번째 팩터를 (매출액 / 시가총액), 두 번째 팩터를 ROE로 하고 싶은 경우<br>
+                팩터 투자 계산식에 (B / A) & C 를 적으면 해당 전략이 적용됩니다.<br>
+                이 때 첫 번째 팩터에 대한 기준점은 기준점 설정 1에, 두 번째 팩터에 대한 기준점은 기준점 설정 2에 적으면 됩니다.<br><br>
+                현재는 최대 3개 팩터까지만 지원하고 있습니다.<br>
+                연산 시간은 팩터 1개가 늘어날 때마다 대략 10초 조금 넘게 추가됩니다.
+              </p>
             </form>
             <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- <%= 개인 %> -->

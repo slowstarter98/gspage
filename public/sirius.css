@@ -27,16 +27,17 @@ body {
 
   font-weight: bold;
   color: rgb(245, 239, 230);
-  top: 100px;
-  left: -150px;
+  top: -70px;
+  right: -800px;
 }
+
 .send-button:hover {
   background-color: darkgreen;
 }
 .form-box {
   padding: 20px;
   margin-left: 20px;
-  height:350px;
+  height:750px;
   width:960px;
 }
 .method-button {
@@ -44,22 +45,22 @@ body {
   height: 20px;
 }
 .method-box {
-  height: 300px;
+  height: 200px;
   width: 300px;
   display: inline-block;
   padding: 20px;
   margin-right: 40px;
   vertical-align: middle;
-  margin-left: 20px;
+  margin-left: 0px;
 }
 .method-box > p {
   display: inline-block;
 }
 .range-box {
-  height: 300px;
+  height: 200px;
   display: inline-block;
   padding: 20px;
-  margin-left: 70px;
+  margin-left: 40px;
 }
 .range-box > p {
   display: inline-block;
@@ -67,7 +68,7 @@ body {
 .chart-plot {
   position: relative;
   left: -200px;
-  top: -150px;
+  /*top: 300px;*/
   width: 1350px;
   height: 1080px;
   border-radius: 10px;
@@ -76,7 +77,7 @@ body {
 }
 .select-box {
   padding: 20px;
-  height: 300px;
+  height: 200px;
   margin-left: -20px;
 }
 .select-factor {
@@ -173,7 +174,7 @@ body {
 
 form {
    /*border: 1px solid aqua;*/
-  display: flex;
+  /*display: flex;*/
   justify-content: center;
   align-items: center;
   width: 1000px;

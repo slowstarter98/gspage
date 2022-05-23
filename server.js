@@ -443,13 +443,20 @@ app.post("/sirius", function (요청, 응답) {
     count++;
     요청.session.chart_id = count;
   db.collection("sirius-count").findOne({}, function (에러, 결과) {
-    db.collection("sirius").insertOne(
+    db.collection("sirius2").insertOne(
       {
         _id: 요청.session.chart_id,
         Type: 요청.body.type,
         RangeLeft: 요청.body.rangeL,
         RangeRight: 요청.body.rangeR,
         Factor: 요청.body.factor,
+          RangeLeft2: 요청.body.rangeL2,
+          RangeRight2: 요청.body.rangeR2,
+          Factor2: 요청.body.factor2,
+          RangeLeft3: 요청.body.rangeL3,
+          RangeRight3: 요청.body.rangeR3,
+          Factor3: 요청.body.factor3,
+          computation: 요청.body.computation,
       },
       function (에러, result) {
         db.collection("sirius-count").updateOne(
